@@ -1,0 +1,5 @@
+require('settings')
+require('keymaps')
+require('plugins')
+require('plug_config/colorscheme')
+require('plug_config/feline')
