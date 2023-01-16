@@ -2,6 +2,7 @@
 local map = vim.keymap.set
 local options = { noremap = true, silent = true }
 local g = vim.g -- global variables
+local keymap = vim.keymap.set
 
 -- ========================================================
 --                        KEY MAPPING
@@ -100,7 +101,6 @@ map("n", "<C-M-o>", "<cmd>Telescope oldfiles<CR>", options)
 
 -- ========================= Comment ========================
 local api = require("Comment.api")
-local keymap = vim.keymap.set
 
 -- Toggle current line (linewise) using C-/
 keymap("n", "<C-/>", api.toggle.linewise.current)
@@ -112,3 +112,46 @@ keymap("x", "<C-\\>", api.toggle.blockwise.current)
 
 -- ========================== REST ==========================
 map("n", "<leader>rr", "<Plug>RestNvim", {}) -- run the request under the cursor
+
+-- ======================== LSP Saga ========================
+local opts = { noremap = true, silent = true }
+
+-- Hover Doc
+keymap("n", "K", "<Cmd>Lspsaga hover_doc<CR>", opts)
+
+keymap("n", "gp", "<Cmd>Lspsaga preview_definition<CR>", opts)
+
+keymap("i", "<leader>hl", "<Cmd>Lspsaga signature_help<CR>", opts)
+
+-- Rename
+keymap("n", "gr", "<cmd>Lspsaga rename<CR>")
+
+-- Go to Definition
+keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
+
+-- show_line_diagnsotic float window unfocus
+keymap("n", "<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>")
+
+-- Show cursor diagnostic
+keymap("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
+
+-- Show buffer diagnostic
+keymap("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
+
+-- Diagnsotic jump
+keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
+keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
+
+-- Diagnostic jump with filter like Only jump to error
+keymap("n", "[E", function()
+  require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
+end)
+keymap("n", "]E", function()
+  require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
+end)
+
+-- Code action
+keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
+
+-- Toggle Outline
+keymap("n","<leader>o", "<cmd>Lspsaga outline<CR>")
