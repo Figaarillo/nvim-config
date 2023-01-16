@@ -15,9 +15,9 @@ cmd [[highlight IndentBlanklineIndent5 guifg=#ffd319 gui=nocombine]]
 cmd [[highlight IndentBlanklineIndent6 guifg=#ff2975 gui=nocombine]]
 cmd [[highlight IndentBlanklineIndent7 guifg=#f222ff gui=nocombine]]
 
-indent_blankline.setup ({
-  show_current_context = true,
-  show_current_context_start = true,
+indent_blankline.setup({
+  show_current_context = false,
+  show_current_context_start = false,
   space_char_blankline = "",
   char_highlight_list = {
     "IndentBlanklineIndent1",

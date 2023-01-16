@@ -1,8 +1,8 @@
 -- ========================= Alias ========================
 local map = vim.keymap.set
 local options = { noremap = true, silent = true }
-local g = vim.g -- global variables
 local keymap = vim.keymap.set
+local g = vim.g -- global variables
 
 -- ========================================================
 --                        KEY MAPPING
@@ -84,20 +84,13 @@ map(
 )
 map(
 	"n",
-	"<C-M-i>",
-	'<cmd>lua require"telescope.builtin".grep_string(require("telescope.themes").get_cursor({}))<CR>',
-	options
-)
-map(
-	"n",
 	"<C-M-t>",
-
 	'<cmd>lua require"telescope.builtin".colorscheme(require("telescope.themes").get_dropdown({winblend = 10}))<CR>',
 	options
 )
+map("n", "<leader>?", require("telescope.builtin").oldfiles, options)
+map("n", "<C-M-o>", require("telescope.builtin").help_tags)
 map("n", "<C-M-k>", "<cmd>Telescope keymaps<CR>", options)
-
-map("n", "<C-M-o>", "<cmd>Telescope oldfiles<CR>", options)
 
 -- ========================= Comment ========================
 local api = require("Comment.api")
@@ -144,14 +137,14 @@ keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
 
 -- Diagnostic jump with filter like Only jump to error
 keymap("n", "[E", function()
-  require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
+	require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
 end)
 keymap("n", "]E", function()
-  require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
+	require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
 end)
 
 -- Code action
 keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
 
 -- Toggle Outline
-keymap("n","<leader>o", "<cmd>Lspsaga outline<CR>")
+keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>")

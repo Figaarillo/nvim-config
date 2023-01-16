@@ -5,7 +5,6 @@
 -- ===================== Neovim API aliases ====================
 local cmd = vim.cmd -- execute Vim commands
 local exec = vim.api.nvim_exec -- execute vimscript
--- local fn = vim.fn                                               -- execute functions
 local set = vim.opt -- global/buffer/window-scoped options
 
 -- =============================================================
@@ -19,7 +18,7 @@ set.encoding = "utf-8" -- enables international characters
 set.hidden = true -- allows switch between buffers and not closing them
 set.ignorecase = true -- ignore case letters when search a word
 set.mouse = "a" -- allows use the mouse
-set.scrolloff = 8 -- keep at least 8 lines below cursor
+set.scrolloff = 10 -- keep at least 8 lines below cursor
 set.showcmd = true -- show the commands
 set.showmatch = true -- highlight matching parentheses
 set.smartcase = false -- ignore lower case for the whole pattern
@@ -37,7 +36,8 @@ set.showtabline = 0
 -- ===================== Side number config ====================
 set.number = true -- show line number
 set.relativenumber = true -- shows numbers relative to our position
-set.numberwidth = 1 -- change width of the column
+set.numberwidth = 3 -- change width of the column
+set.signcolumn = "auto"
 
 -- ======================= Tabs & Indent =======================
 set.tabstop = 2 -- chnage the display widht of the tabs characters, not the behavior of pressing tab
@@ -68,5 +68,3 @@ exec(
   ]],
 	false
 )
-
--- cmd("colorscheme onedark")

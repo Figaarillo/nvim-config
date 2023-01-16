@@ -34,6 +34,7 @@ packer.init({
 -- ============================================================
 --                            PLUGINS
 -- ============================================================
+
 return require("packer").startup(function(use)
 	-- ========================= Packer =========================
 	use("wbthomason/packer.nvim")
@@ -57,12 +58,7 @@ return require("packer").startup(function(use)
 	-- ====================== Theme colors ======================
 	use("Mofiqul/dracula.nvim")
 	use("olimorris/onedarkpro.nvim")
-	-- use("navarasu/onedark.nvim")
 	use({ "Everblush/everblush.nvim", as = "everblush" })
-	use({
-		"uloco/bluloco.nvim",
-		requires = { "rktjmp/lush.nvim" },
-	})
 
 	-- ====================== File browser ======================
 	use("kyazdani42/nvim-tree.lua")

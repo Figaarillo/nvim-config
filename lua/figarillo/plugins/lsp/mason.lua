@@ -25,6 +25,8 @@ local servers = {
 	"jdtls", -- Java
 	"intelephense",
 	-- "gopls", -- GO
+	"eslint",
+	"tailwindcss",
 }
 
 mason.setup({
@@ -47,6 +49,7 @@ mason_lspconfig.setup_handlers({
 		local opts = {
 			on_attach = require("figarillo.plugins.lsp.handlers").on_attach,
 			capabilities = require("figarillo.plugins.lsp.handlers").capabilities,
+			settings = servers[server_name],
 		}
 
 		local require_ok, server = pcall(require, "figarillo.plugins.lsp.settings." .. server_name)

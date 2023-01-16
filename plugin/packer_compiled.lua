@@ -94,11 +94,6 @@ _G.packer_plugins = {
     path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/auto-save.nvim",
     url = "https://github.com/Pocco81/auto-save.nvim"
   },
-  ["bluloco.nvim"] = {
-    loaded = true,
-    path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/bluloco.nvim",
-    url = "https://github.com/uloco/bluloco.nvim"
-  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -164,11 +159,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
-  },
-  ["lush.nvim"] = {
-    loaded = true,
-    path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/lush.nvim",
-    url = "https://github.com/rktjmp/lush.nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,

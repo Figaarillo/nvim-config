@@ -12,9 +12,9 @@ end
 M.capabilities = cmp_nvim_lsp.default_capabilities()
 
 M.setup = function()
-  local config = {
+	local config = {
 		virtual_text = true, -- Enable virtual text
-    signs = false, -- Do not show signs
+		signs = false, -- Do not show signs
 		update_in_insert = true,
 		underline = true,
 		severity_sort = true,
@@ -60,6 +60,9 @@ end
 M.on_attach = function(client, bufnr)
 	lsp_keymaps(bufnr)
 	lsp_highlight(client)
+	vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
+		vim.lsp.buf.format()
+	end, { desc = "Format current buffer with LSP" })
 end
 
 return M
