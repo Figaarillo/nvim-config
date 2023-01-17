@@ -138,6 +138,18 @@ cmp.setup({
 		native_menu = false,
 		ghost_text = true,
 	},
+	performance = {
+		trigger_debounce_time = 500,
+		throttle = 550,
+		fetching_timeout = 80,
+	},
+})
+
+cmp.setup.cmdline({ "/", "?" }, {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = "buffer" },
+	},
 })
 
 cmp.setup.cmdline(":", {

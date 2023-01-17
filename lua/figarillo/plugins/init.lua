@@ -15,6 +15,8 @@ require("figarillo.plugins.rest")
 require("figarillo.plugins.tabnine")
 require("figarillo.plugins.toggle-term")
 require("figarillo.plugins.treesitter")
+require("figarillo.plugins.staline")
+require("figarillo.plugins.gitsings")
 
 -- Colorschemes
 require("figarillo.plugins.bluloco")

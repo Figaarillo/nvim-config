@@ -14,7 +14,10 @@ local colors = {
 	bg = "#1A1C23",
 }
 
-local empty = require("lualine.component"):extend()
+local status_empty, empty = pcall(require, "lualine.component"):extend()
+if not status_empty then
+	return
+end
 function empty:draw(default_highlight)
 	self.status = ""
 	self.applied_separator = ""

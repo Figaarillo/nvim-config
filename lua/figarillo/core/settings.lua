@@ -3,7 +3,6 @@
 -- =============================================================
 
 -- ===================== Neovim API aliases ====================
-local cmd = vim.cmd -- execute Vim commands
 local exec = vim.api.nvim_exec -- execute vimscript
 local set = vim.opt -- global/buffer/window-scoped options
 
@@ -37,7 +36,7 @@ set.showtabline = 0
 set.number = true -- show line number
 set.relativenumber = true -- shows numbers relative to our position
 set.numberwidth = 3 -- change width of the column
-set.signcolumn = "auto"
+set.signcolumn = "yes"
 
 -- ======================= Tabs & Indent =======================
 set.tabstop = 2 -- chnage the display widht of the tabs characters, not the behavior of pressing tab

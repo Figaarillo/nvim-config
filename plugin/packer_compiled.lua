@@ -144,6 +144,11 @@ _G.packer_plugins = {
     path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  ["gitsigns.nvim"] = {
+    loaded = true,
+    path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
+  },
   ["indent-blankline.nvim"] = {
     loaded = true,
     path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
@@ -154,11 +159,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
     url = "https://github.com/glepnir/lspsaga.nvim"
-  },
-  ["lualine.nvim"] = {
-    loaded = true,
-    path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/lualine.nvim",
-    url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
@@ -254,6 +254,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/rest.nvim",
     url = "https://github.com/rest-nvim/rest.nvim"
+  },
+  ["staline.nvim"] = {
+    loaded = true,
+    path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/staline.nvim",
+    url = "https://github.com/tamton-aquib/staline.nvim"
   },
   ["telescope-file-browser.nvim"] = {
     loaded = true,

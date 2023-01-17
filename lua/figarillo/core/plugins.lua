@@ -33,6 +33,7 @@ packer.init({
 
 -- ============================================================
 --                            PLUGINS
+--uu
 -- ============================================================
 
 return require("packer").startup(function(use)
@@ -64,10 +65,11 @@ return require("packer").startup(function(use)
 	use("kyazdani42/nvim-tree.lua")
 
 	-- ======================= Statusline =======================
-	use({
-		"nvim-lualine/lualine.nvim",
-		requires = "kyazdani42/nvim-web-devicons",
-	})
+	use("tamton-aquib/staline.nvim")
+	-- use({
+	-- 	"nvim-lualine/lualine.nvim",
+	-- 	requires = "kyazdani42/nvim-web-devicons",
+	-- })
 
 	-- ====================== Start screen ======================
 	use("goolord/alpha-nvim")
@@ -77,6 +79,9 @@ return require("packer").startup(function(use)
 		"akinsho/toggleterm.nvim",
 		tag = "*",
 	})
+
+	-- ======================= Git signs ========================
+	use("lewis6991/gitsigns.nvim")
 
 	-- ======================== Telescope =======================
 	use({
