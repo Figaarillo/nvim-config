@@ -38,14 +38,14 @@ packer.init({
 -- ============================= Packer =============================
 return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
-	
+
 	-- =========================== Utilities ==========================
 	-- Autosave
 	use("Pocco81/auto-save.nvim")
 
 	-- Autopairs
 	use("windwp/nvim-autopairs")
-	
+
 	-- Dev icons
 	use("kyazdani42/nvim-web-devicons")
 
@@ -54,40 +54,46 @@ return require("packer").startup(function(use)
 
 	-- Color highlight
 	use("NvChad/nvim-colorizer.lua")
-	
+
 	-- Todo  highlight
 	use({
 		"folke/todo-comments.nvim",
 		requires = "nvim-lua/plenary.nvim",
 	})
-	
+
 	-- ========================= Theme colors =========================
 	use("Mofiqul/dracula.nvim")
 	use("olimorris/onedarkpro.nvim")
 	use({ "Everblush/everblush.nvim", as = "everblush" })
-	
+
 	-- ========================= File browser =========================
 	use("kyazdani42/nvim-tree.lua")
-	
+
 	-- ========================== Statusline ==========================
 	use("tamton-aquib/staline.nvim")
 	-- use({
-		-- 	"nvim-lualine/lualine.nvim",
-		-- 	requires = "kyazdani42/nvim-web-devicons",
-		-- })
-		
+	-- 	"nvim-lualine/lualine.nvim",
+	-- 	requires = "kyazdani42/nvim-web-devicons",
+	-- })
+
 	-- ========================= Start screen =========================
 	use("goolord/alpha-nvim")
-		
+
+	-- ======================== Todo highlight ========================
+	use({
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+	})
+
 	-- =========================== Comments ===========================
 	use("numToStr/Comment.nvim")
-		
+
 	-- =========================== Terminal ===========================
 	use({
 		"akinsho/toggleterm.nvim",
 		tag = "*",
 	})
-	
+
 	-- ========================== REST Client =========================
 	use({
 		"rest-nvim/rest.nvim",
@@ -95,10 +101,10 @@ return require("packer").startup(function(use)
 			"nvim-lua/plenary.nvim",
 		},
 	})
-	
+
 	-- =========================== Git plugs ==========================
 	use("lewis6991/gitsigns.nvim")
-	
+
 	-- ========================= Fuzzi finder =========================
 	use({
 		"nvim-telescope/telescope.nvim",
@@ -108,7 +114,7 @@ return require("packer").startup(function(use)
 		},
 	})
 	use("nvim-telescope/telescope-file-browser.nvim")
-
+	
 	-- ====================== Autocomplete / LSP ======================
 	-- cmp plugins
 	use("hrsh7th/nvim-cmp") -- Autocompletion plugin
@@ -129,7 +135,7 @@ return require("packer").startup(function(use)
 	-- snippets
 	use("L3MON4D3/LuaSnip") --snippet engine
 	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
-	
+
 	-- LSP
 	use("neovim/nvim-lspconfig") -- enable LSP
 	use("williamboman/mason.nvim") -- simple to use language server installer
@@ -139,7 +145,7 @@ return require("packer").startup(function(use)
 	-- formatting
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("MunifTanjim/prettier.nvim")
-	
+
 	-- ========================== Treesitter ==========================
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -148,7 +154,7 @@ return require("packer").startup(function(use)
 	use("p00f/nvim-ts-rainbow")
 
 	-- autorename tags
-	use("windwp/nvim-ts-autotag") 
+	use("windwp/nvim-ts-autotag")
 	use("nvim-treesitter/nvim-treesitter-refactor")
 
 	-- Impreve comementrings

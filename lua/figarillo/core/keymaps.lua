@@ -7,7 +7,6 @@ local map = vim.keymap.set
 local options = { noremap = true, silent = true }
 local g = vim.g -- global variables
 
-
 -- =========================== Leader key ===========================
 g.mapleader = " "
 
@@ -93,7 +92,7 @@ map(
 	options
 )
 
--- Find old fiels 
+-- Find old fiels
 map("n", "<leader>?", require("telescope.builtin").oldfiles, options)
 
 -- Find helps
@@ -158,3 +157,12 @@ map({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
 
 -- Toggle Outline
 map("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
+
+-- ========================== Todo comments =========================
+map("n", "]t", function()
+	require("todo-comments").jump_next()
+end, { desc = "Next todo comment" })
+
+map("n", "[t", function()
+	require("todo-comments").jump_prev()
+end, { desc = "Previous todo comment" })
