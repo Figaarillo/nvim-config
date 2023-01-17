@@ -57,9 +57,36 @@ local function lsp_highlight(client)
 	illuminate.on_attach(client)
 end
 
+local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
+local event = "BufWritePre" -- or "BufWritePost"
+local async = event == "BufWritePost"
+
 M.on_attach = function(client, bufnr)
 	lsp_keymaps(bufnr)
 	lsp_highlight(client)
+
+	if client.supports_method("textDocument/formatting") then
+		vim.keymap.set("n", "<Leader>f", function()
+			vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+		end, { buffer = bufnr, desc = "[lsp] format" })
+
+		vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
+		vim.api.nvim_create_autocmd(event, {
+			group = group,
+			buffer = bufnr,
+			callback = function()
+				-- lsp_formatting(bufnr)
+				vim.lsp.buf.format({ bufnr = bufnr, async = async })
+			end,
+		})
+	end
+
+	if client.supports_method("textDocument/rangeFormatting") then
+		vim.keymap.set("x", "<Leader>f", function()
+			vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
+		end, { buffer = bufnr, desc = "[lsp] format" })
+	end
+
 	vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
 		vim.lsp.buf.format()
 	end, { desc = "Format current buffer with LSP" })
