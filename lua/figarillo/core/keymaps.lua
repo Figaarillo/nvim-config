@@ -59,6 +59,7 @@ map("n", "<leader>s", ":ASToggle<CR>", {}) -- toggle autosave
 map("n", "<leader>h", ":set hlsearch!<CR>", {})
 map("n", "<leader>pp", ":PackerSync<CR>", options)
 map("", "<leader>ff", ":Prettier<CR>", options)
+map("n", "<leader>a", "<esc>ggVG<CR>") -- select all
 
 -- ======================= Nvim Tree ======================
 map("n", "<C-M-j>", ":NvimTreeToggle<CR>", {})

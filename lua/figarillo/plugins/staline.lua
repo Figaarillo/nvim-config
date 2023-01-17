@@ -11,7 +11,7 @@ staline.setup({
 		full_path = false,
 		line_column = "並%p%% ", -- `:h stl` to see all flags.
 
-		fg = "#000000", -- Foreground text color.
+		fg = "#3B2733", -- Foreground text color.
 		bg = "none", -- Default background is transparent.
 		inactive_color = "#303030",
 		inactive_bgcolor = "none",
@@ -25,9 +25,11 @@ staline.setup({
 		null_ls_symbol = "", -- A symbol to indicate that a source is coming from null-ls
 	},
 	mode_colors = {
-		n = "#2bbb4f",
+		n = "#E95678",
+		c = "#F43E5C",
+		-- n = "#2bbb4f",
 		i = "#986fec",
-		c = "#e27d60",
+		-- c = "#e27d60",
 		v = "#4799eb", -- etc..
 	},
 	mode_icons = {
