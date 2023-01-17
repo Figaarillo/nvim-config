@@ -1,4 +1,3 @@
-
 -- fortune printing (from vim-startify)
 
 local list_extend = vim.list_extend

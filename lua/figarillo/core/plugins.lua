@@ -1,7 +1,11 @@
+-- ==================================================================
+--                           Neovim Plugins
+-- ==================================================================
+
+-- ============================== Alias =============================
 local fn = vim.fn
--- ==============================================================
---                  Automatically install packer
--- ==============================================================
+
+-- ================== Automatically install packer ==================
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
 	PACKER_BOOTSTRAP = fn.system({
@@ -31,21 +35,17 @@ packer.init({
 	},
 })
 
--- ============================================================
---                            PLUGINS
--- ============================================================
-
+-- ============================= Packer =============================
 return require("packer").startup(function(use)
-	-- ========================= Packer =========================
 	use("wbthomason/packer.nvim")
-
-	-- ======================== Utilities =======================
+	
+	-- =========================== Utilities ==========================
 	-- Autosave
 	use("Pocco81/auto-save.nvim")
 
 	-- Autopairs
 	use("windwp/nvim-autopairs")
-
+	
 	-- Dev icons
 	use("kyazdani42/nvim-web-devicons")
 
@@ -54,35 +54,52 @@ return require("packer").startup(function(use)
 
 	-- Color highlight
 	use("NvChad/nvim-colorizer.lua")
-
-	-- ====================== Theme colors ======================
+	
+	-- Todo  highlight
+	use({
+		"folke/todo-comments.nvim",
+		requires = "nvim-lua/plenary.nvim",
+	})
+	
+	-- ========================= Theme colors =========================
 	use("Mofiqul/dracula.nvim")
 	use("olimorris/onedarkpro.nvim")
 	use({ "Everblush/everblush.nvim", as = "everblush" })
-
-	-- ====================== File browser ======================
+	
+	-- ========================= File browser =========================
 	use("kyazdani42/nvim-tree.lua")
-
-	-- ======================= Statusline =======================
+	
+	-- ========================== Statusline ==========================
 	use("tamton-aquib/staline.nvim")
 	-- use({
-	-- 	"nvim-lualine/lualine.nvim",
-	-- 	requires = "kyazdani42/nvim-web-devicons",
-	-- })
-
-	-- ====================== Start screen ======================
+		-- 	"nvim-lualine/lualine.nvim",
+		-- 	requires = "kyazdani42/nvim-web-devicons",
+		-- })
+		
+	-- ========================= Start screen =========================
 	use("goolord/alpha-nvim")
-
-	-- ======================== Terminal ========================
+		
+	-- =========================== Comments ===========================
+	use("numToStr/Comment.nvim")
+		
+	-- =========================== Terminal ===========================
 	use({
 		"akinsho/toggleterm.nvim",
 		tag = "*",
 	})
-
-	-- ======================= Git signs ========================
+	
+	-- ========================== REST Client =========================
+	use({
+		"rest-nvim/rest.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+		},
+	})
+	
+	-- =========================== Git plugs ==========================
 	use("lewis6991/gitsigns.nvim")
-
-	-- ======================== Telescope =======================
+	
+	-- ========================= Fuzzi finder =========================
 	use({
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.0",
@@ -92,7 +109,7 @@ return require("packer").startup(function(use)
 	})
 	use("nvim-telescope/telescope-file-browser.nvim")
 
-	-- =================== Autocomplete / LSP ==================
+	-- ====================== Autocomplete / LSP ======================
 	-- cmp plugins
 	use("hrsh7th/nvim-cmp") -- Autocompletion plugin
 	use("hrsh7th/cmp-buffer") -- buffer completions
@@ -100,7 +117,7 @@ return require("packer").startup(function(use)
 	use("hrsh7th/cmp-cmdline") -- cmdline completions
 	use("saadparwaiz1/cmp_luasnip") -- Snippets source for nvim-cmp
 	use("hrsh7th/cmp-nvim-lsp") -- LSP source for nvim-cmp
-	use("hrsh7th/cmp-emoji")
+	use("hrsh7th/cmp-emoji") -- Eomojis autocompletion
 
 	-- tabnine
 	use({
@@ -112,41 +129,28 @@ return require("packer").startup(function(use)
 	-- snippets
 	use("L3MON4D3/LuaSnip") --snippet engine
 	use("rafamadriz/friendly-snippets") -- a bunch of snippets to use
-
+	
 	-- LSP
 	use("neovim/nvim-lspconfig") -- enable LSP
 	use("williamboman/mason.nvim") -- simple to use language server installer
 	use("williamboman/mason-lspconfig.nvim") -- simple to use language server installer
-	-- use("glepnir/lspsaga.nvim") -- provides beautiful UIs for various LSP-related features like hover doc, defenition preview, and rename actions
-	use({
-		"glepnir/lspsaga.nvim",
-		branch = "main",
-		config = function()
-			require("lspsaga").setup({})
-		end,
-	})
-	-- formatting_options
+	use({ "glepnir/lspsaga.nvim", branch = "main" }) -- use("glepnir/lspsaga.nvim") -- provides beautiful UIs for various LSP-related features like hover doc, defenition preview, and rename actions
+
+	-- formatting
 	use("jose-elias-alvarez/null-ls.nvim")
 	use("MunifTanjim/prettier.nvim")
-
-	-- ======================= Treesitter ======================
+	
+	-- ========================== Treesitter ==========================
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 	})
 	use("p00f/nvim-ts-rainbow")
-	use("windwp/nvim-ts-autotag") -- autorename tags
+
+	-- autorename tags
+	use("windwp/nvim-ts-autotag") 
 	use("nvim-treesitter/nvim-treesitter-refactor")
+
+	-- Impreve comementrings
 	use("JoosepAlviste/nvim-ts-context-commentstring")
-
-	-- ======================== Comments =======================
-	use("numToStr/Comment.nvim")
-
-	-- ====================== REST Client ======================
-	use({
-		"rest-nvim/rest.nvim",
-		requires = {
-			"nvim-lua/plenary.nvim",
-		},
-	})
 end)
