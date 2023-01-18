@@ -63,7 +63,7 @@ lspsaga.setup({
 	},
 	symbol_in_winbar = {
 		enable = true,
-		separator = " ",
+		separator = "  ",
 		hide_keyword = true,
 		show_file = true,
 		folder_level = 2,
@@ -74,7 +74,7 @@ lspsaga.setup({
 		-- currently only round theme
 		theme = "round",
 		-- border type can be single,double,rounded,solid,shadow.
-		border = "round",
+		border = "rounded",
 		winblend = 0,
 		expand = "",
 		collapse = "",

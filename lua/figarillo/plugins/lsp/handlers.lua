@@ -1,15 +1,18 @@
 local M = {}
 local keymap = vim.keymap.set
 
-local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+--[[ local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_cmp_ok then
 	return
-end
-
+end ]]
 -- M.capabilities = vim.lsp.protocol.make_client_capabilities()
 -- M.capabilities.offsetEncoding = { "utf-16" }
 -- M.capabilities.textDocument.completion.completionItem.snippetSupport = true
-M.capabilities = cmp_nvim_lsp.default_capabilities()
+-- M.capabilities = cmp_nvim_lsp.default_capabilities()
+
+local _cmp_nvim_lsp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+M.capabilities = _cmp_nvim_lsp and cmp_nvim_lsp.default_capabilities() or vim.lsp.protocol.make_client_capabilities()
+M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 M.setup = function()
 	local config = {
@@ -42,10 +45,8 @@ end
 local function lsp_keymaps(bufnr)
 	local buf_opts = { buffer = bufnr, silent = true }
 	keymap("n", "gD", vim.lsp.buf.declaration, buf_opts)
-	keymap("n", "gd", vim.lsp.buf.definition, buf_opts)
 	keymap("n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", buf_opts)
-	keymap("n", "gp", "<cmd>Lspsaga peek_definition<CR>", buf_opts)
-	keymap("n", "K", vim.lsp.buf.hover, buf_opts)
+	keymap("n", "gP", "<cmd>Lspsaga peek_definition<CR>", buf_opts)
 	keymap("n", "gi", vim.lsp.buf.implementation, buf_opts)
 end
 
@@ -57,9 +58,10 @@ local function lsp_highlight(client)
 	illuminate.on_attach(client)
 end
 
-local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+-- local group = vim.api.nvim_create_augroup("lsp_format_on_save", { clear = false })
 local event = "BufWritePre" -- or "BufWritePost"
-local async = event == "BufWritePost"
+-- local async = event == "BufWritePost"
 
 M.on_attach = function(client, bufnr)
 	lsp_keymaps(bufnr)
@@ -70,13 +72,13 @@ M.on_attach = function(client, bufnr)
 			vim.lsp.buf.format({ bufnr = vim.api.nvim_get_current_buf() })
 		end, { buffer = bufnr, desc = "[lsp] format" })
 
-		vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
+		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 		vim.api.nvim_create_autocmd(event, {
-			group = group,
+			group = augroup,
 			buffer = bufnr,
 			callback = function()
-				-- lsp_formatting(bufnr)
-				vim.lsp.buf.format({ bufnr = bufnr, async = async })
+				-- vim.lsp.buf.format({ bufnr = bufnr, async = async })
+				vim.lsp.buf.format({ timeout = 2000, bufnr = bufnr })
 			end,
 		})
 	end

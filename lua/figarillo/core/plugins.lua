@@ -114,7 +114,7 @@ return require("packer").startup(function(use)
 		},
 	})
 	use("nvim-telescope/telescope-file-browser.nvim")
-	
+
 	-- ====================== Autocomplete / LSP ======================
 	-- cmp plugins
 	use("hrsh7th/nvim-cmp") -- Autocompletion plugin

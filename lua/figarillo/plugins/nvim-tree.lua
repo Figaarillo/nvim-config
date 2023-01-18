@@ -91,8 +91,10 @@ nvim_tree.setup({
 				symlink = "",
 				bookmark = "",
 				folder = {
-					arrow_closed = "",
-					arrow_open = "",
+					-- arrow_closed = "",
+					arrow_closed = "",
+					-- arrow_open = "",
+					arrow_open = "",
 					default = "",
 					open = "",
 					empty = "",

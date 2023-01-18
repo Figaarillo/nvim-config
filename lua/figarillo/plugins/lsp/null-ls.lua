@@ -6,18 +6,16 @@ end
 local M = {}
 
 local formatting = null_ls.builtins.formatting
--- local diagnostics = null_ls.builtins.diagnostics
+local code_actions = null_ls.builtins.code_actions
+local diagnostics = null_ls.builtins.diagnostics
 
 local sources = {
-	formatting.prettier.with({
-		filetypes = { "css", "html", "javascript", "json", "yaml", "python" },
-		prefer_local = "",
-		extra_filetypes = { "toml", "solidity" },
-		extra_args = { "--single-quote", "--print-width 80", "--arrow-parens avoid" },
-	}),
+	formatting.prettierd,
 	formatting.black.with({ extra_args = { "--fast" } }),
 	formatting.stylua,
 	formatting.google_java_format,
+	code_actions.eslint,
+	diagnostics.eslint,
 }
 
 null_ls.setup({

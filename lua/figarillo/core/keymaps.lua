@@ -12,24 +12,23 @@ g.mapleader = " "
 
 -- ======================= Without leader key =======================
 map("n", "<C-s>", ":w<CR>", options) -- to save in normal mode
-map("n", "<C-M-s>", ":w<CR><Esc>:Prettier<CR><Esc>", options) -- format save
+map("n", "<C-M-s>", ":w<CR><Esc>:Prettier<CR><Esc>", options) -- force format on save
 map("i", "<C-s>", "<Esc>:w<CR>a", options) -- to save in insert mode
 map("i", "<C-M-s>", "<Esc>:w ", options) -- named save
--- map("n", "C-a", ":tabedit .<CR>", options) -- open a file explorer
-map("n", "qqq", ":q!<CR>", options) -- fast close
-map("n", "qq", ":Alpha<CR>", options) -- fast close
-map("n", "<M-z>", "<cmd>set wrap!<CR>", options)
-map("n", "<C-n>", ":tabnew ", options)
+map("n", "ZZZ", ":q!<CR>", options) -- fast close
+map("n", "ZZ", ":Alpha<CR>", options) -- fast close
+map("n", "<M-z>", "<cmd>set wrap!<CR>", options) -- toggle wrap
+map("n", "<C-n>", ":tabnew ", options) -- open new tab
 map("i", "<C-BS>", "<C-W>", {}) -- Ctrl-Backspace to delete the previous word
+map("v", ">", ">gv", options) -- indent in inser mode
 map("v", "<", "<gv", options)
-map("v", ">", ">gv", options)
 map("n", "ss", ":split<Return><C-w>w", options)
 map("n", "sv", ":vsplit<Return><C-w>w", options)
 
 -- ========================= With leader key ========================
 map("n", "<leader>w", ":bdelete!<CR>", options) -- to close current buffer
 map("n", "<leader>s", ":ASToggle<CR>", {}) -- toggle autosave
-map("n", "<leader>h", ":set hlsearch!<CR>", {})
+map("n", "<leader>h", ":set hlsearch!<CR>", {}) -- toggle highlight search
 map("n", "<leader>pp", ":PackerSync<CR>", options)
 map("", "<leader>ff", ":Prettier<CR>", options)
 
@@ -60,7 +59,8 @@ map("n", "<M-k>", ":m .-2<CR>==", {})
 map("n", "<M-j>", ":m .+1<CR>==", {})
 
 -- ============================ Nvim Tree ===========================
-map("n", "<C-M-j>", ":NvimTreeToggle<CR>", {})
+map("n", "<C-M-j>", ":NvimTreeToggle<CR>", options)
+map("n", "<leader>e", ":NvimTreeOpen<CR>", options)
 
 -- ========================== Open terminal =========================
 map("n", "<leader>'", '<Cmd>exe v:count1 . "ToggleTerm direction=horizontal"<CR>', options) -- to open and split a new terminal
@@ -105,12 +105,10 @@ map("n", "<C-M-k>", "<cmd>Telescope keymaps<CR>", options)
 local api = require("Comment.api")
 
 -- Toggle current line (linewise) using C-/
-map("n", "<C-/>", api.toggle.linewise.current)
-map("x", "<C-/>", api.toggle.linewise.current)
+map("i", "<C-/>", api.toggle.linewise.current)
 
 -- Toggle current line (blockwise) using C-\
-map("n", "<C-\\>", api.toggle.blockwise.current)
-map("x", "<C-\\>", api.toggle.blockwise.current)
+map("i", "<C-\\>", api.toggle.blockwise.current)
 
 -- ============================== REST ==============================
 map("n", "<leader>rr", "<Plug>RestNvim", {}) -- run the request under the cursor

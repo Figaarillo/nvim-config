@@ -41,7 +41,7 @@ staline.setup({
 	sections = {
 		left = { "- ", "-mode", "-branch", "left_sep_double" },
 		mid = { "file_name" },
-		right = { "lsp", "right_sep_double", "-line_column" },
+		right = { "lsp", "right_sep_double", "-cool_symbol", "-line_column" },
 	},
 	special_table = {
 		NvimTree = { "NvimTree", " " },
