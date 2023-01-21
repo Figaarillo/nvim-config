@@ -18,6 +18,7 @@ require("figarillo.plugins.treesitter")
 require("figarillo.plugins.staline")
 require("figarillo.plugins.gitsings")
 require("figarillo.plugins.todo-comments")
+require("figarillo.plugins.trouble")
 
 -- Colorschemes
 require("figarillo.plugins.bluloco")
@@ -25,6 +26,7 @@ require("figarillo.plugins.dracula")
 require("figarillo.plugins.everblush")
 require("figarillo.plugins.onedarkpro")
 require("figarillo.plugins.onedark")
+require("figarillo.plugins.catppuccin")
 
 -- Load theme
 vim.cmd([[

@@ -3,12 +3,11 @@ if not status_ok then
 	return
 end
 
--- local colors = require("catppuccin.palettes").get_palette()
+local colors = require("catppuccin.palettes").get_palette()
 
 devicons.setup({
 	color_icons = true,
-  overwrite = {},
-	--[[ override = {
+	override = {
 		default_icon = {
 			icon = "",
 			color = colors.text,
@@ -449,6 +448,6 @@ devicons.setup({
 			color = colors.teal,
 			name = "stylua",
 		},
-	}, ]]
+	},
 	default = true,
 })

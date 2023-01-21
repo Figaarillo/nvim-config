@@ -55,26 +55,16 @@ return require("packer").startup(function(use)
 	-- Color highlight
 	use("NvChad/nvim-colorizer.lua")
 
-	-- Todo  highlight
-	use({
-		"folke/todo-comments.nvim",
-		requires = "nvim-lua/plenary.nvim",
-	})
-
 	-- ========================= Theme colors =========================
 	use("Mofiqul/dracula.nvim")
 	use("olimorris/onedarkpro.nvim")
-	use({ "Everblush/everblush.nvim", as = "everblush" })
+	use({ "catppuccin/nvim", as = "catppuccin" })
 
 	-- ========================= File browser =========================
 	use("kyazdani42/nvim-tree.lua")
 
 	-- ========================== Statusline ==========================
 	use("tamton-aquib/staline.nvim")
-	-- use({
-	-- 	"nvim-lualine/lualine.nvim",
-	-- 	requires = "kyazdani42/nvim-web-devicons",
-	-- })
 
 	-- ========================= Start screen =========================
 	use("goolord/alpha-nvim")
@@ -92,6 +82,12 @@ return require("packer").startup(function(use)
 	use({
 		"akinsho/toggleterm.nvim",
 		tag = "*",
+	})
+
+	-- ======================= List diagnostic =========================
+	use({
+		"folke/trouble.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
 	})
 
 	-- ========================== REST Client =========================
@@ -151,7 +147,9 @@ return require("packer").startup(function(use)
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 	})
-	use("p00f/nvim-ts-rainbow")
+
+	-- rainbow parentheses
+	use("mrjones2014/nvim-ts-rainbow")
 
 	-- autorename tags
 	use("windwp/nvim-ts-autotag")

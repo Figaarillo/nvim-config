@@ -94,6 +94,11 @@ _G.packer_plugins = {
     path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/auto-save.nvim",
     url = "https://github.com/Pocco81/auto-save.nvim"
   },
+  catppuccin = {
+    loaded = true,
+    path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/catppuccin",
+    url = "https://github.com/catppuccin/nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -133,11 +138,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/dracula.nvim",
     url = "https://github.com/Mofiqul/dracula.nvim"
-  },
-  everblush = {
-    loaded = true,
-    path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/everblush",
-    url = "https://github.com/Everblush/everblush.nvim"
   },
   ["friendly-snippets"] = {
     loaded = true,
@@ -222,7 +222,7 @@ _G.packer_plugins = {
   ["nvim-ts-rainbow"] = {
     loaded = true,
     path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow",
-    url = "https://github.com/p00f/nvim-ts-rainbow"
+    url = "https://github.com/mrjones2014/nvim-ts-rainbow"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
@@ -278,6 +278,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
+  },
+  ["trouble.nvim"] = {
+    loaded = true,
+    path = "/home/figarillo/.local/share/nvim/site/pack/packer/start/trouble.nvim",
+    url = "https://github.com/folke/trouble.nvim"
   }
 }
 
