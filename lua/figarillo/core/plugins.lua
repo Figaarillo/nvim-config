@@ -38,6 +38,7 @@ packer.init({
 -- ============================= Packer =============================
 return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
+
 	-- =========================== Utilities ========================== Autosave
 	use("Pocco81/auto-save.nvim")
 
@@ -52,6 +53,9 @@ return require("packer").startup(function(use)
 
 	-- Color highlight
 	use("NvChad/nvim-colorizer.lua")
+
+	-- Speed up loading Lua modules
+	use("lewis6991/impatient.nvim")
 
 	-- ========================= Theme colors =========================
 	use("Mofiqul/dracula.nvim")
