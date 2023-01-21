@@ -5,8 +5,6 @@ end
 
 local cmd = vim.cmd
 
-vim.opt.list = true
-
 cmd([[highlight IndentBlanklineIndent1 guifg=#8c1eff gui=nocombine]])
 cmd([[highlight IndentBlanklineIndent2 guifg=#f222ff gui=nocombine]])
 cmd([[highlight IndentBlanklineIndent3 guifg=#ff2975 gui=nocombine]])
@@ -18,7 +16,7 @@ cmd([[highlight IndentBlanklineIndent7 guifg=#f222ff gui=nocombine]])
 indent_blankline.setup({
 	show_current_context = false,
 	show_current_context_start = false,
-	space_char_blankline = "",
+	space_char_blankline = " ",
 	char_highlight_list = {
 		"IndentBlanklineIndent1",
 		"IndentBlanklineIndent2",
@@ -28,3 +26,5 @@ indent_blankline.setup({
 		"IndentBlanklineIndent6",
 	},
 })
+
+vim.opt.list = true

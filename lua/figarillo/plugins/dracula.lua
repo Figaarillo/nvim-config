@@ -1,5 +1,5 @@
-local status, dracula = pcall("dracula")
-if not status then
+local status_ok, dracula = pcall(require, "dracula")
+if not status_ok then
 	return
 end
 

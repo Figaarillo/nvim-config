@@ -38,9 +38,7 @@ packer.init({
 -- ============================= Packer =============================
 return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
-
-	-- =========================== Utilities ==========================
-	-- Autosave
+	-- =========================== Utilities ========================== Autosave
 	use("Pocco81/auto-save.nvim")
 
 	-- Autopairs
@@ -140,7 +138,6 @@ return require("packer").startup(function(use)
 
 	-- formatting
 	use("jose-elias-alvarez/null-ls.nvim")
-	use("MunifTanjim/prettier.nvim")
 
 	-- ========================== Treesitter ==========================
 	use({

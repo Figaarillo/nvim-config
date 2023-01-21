@@ -1,5 +1,5 @@
-local status, everblush = pcall(require, "everblush")
-if not status then
+local status_ok, everblush = pcall(require, "everblush")
+if not status_ok then
 	return
 end
 

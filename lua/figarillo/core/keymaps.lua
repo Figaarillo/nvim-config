@@ -3,7 +3,7 @@
 -- ==================================================================
 
 -- ============================== Alias =============================
-local map = vim.keymap.set
+local keymap = vim.keymap.set
 local options = { noremap = true, silent = true }
 local g = vim.g -- global variables
 
@@ -11,65 +11,64 @@ local g = vim.g -- global variables
 g.mapleader = " "
 
 -- ======================= Without leader key =======================
-map("n", "<C-s>", ":w<CR>", options) -- to save in normal mode
-map("n", "<C-M-s>", ":w<CR><Esc>:Prettier<CR><Esc>", options) -- force format on save
-map("i", "<C-s>", "<Esc>:w<CR>a", options) -- to save in insert mode
-map("i", "<C-M-s>", "<Esc>:w ", options) -- named save
-map("n", "ZZZ", ":q!<CR>", options) -- fast close
-map("n", "ZZ", ":Alpha<CR>", options) -- fast close
-map("n", "<M-z>", "<cmd>set wrap!<CR>", options) -- toggle wrap
-map("n", "<C-n>", ":tabnew ", options) -- open new tab
-map("i", "<C-BS>", "<C-W>", {}) -- Ctrl-Backspace to delete the previous word
-map("v", ">", ">gv", options) -- indent in inser mode
-map("v", "<", "<gv", options)
-map("n", "ss", ":split<Return><C-w>w", options)
-map("n", "sv", ":vsplit<Return><C-w>w", options)
+keymap("n", "<C-s>", ":w<CR>", options) -- to save in normal mode
+keymap("i", "<C-s>", "<Esc>:w<CR>a", options) -- to save in insert mode
+keymap("i", "<C-M-s>", "<Esc>:w ", options) -- named save
+keymap("n", "ZZZ", ":q!<CR>", options) -- fast close
+keymap("n", "ZZ", ":Alpha<CR>", options) -- fast close
+keymap("n", "<M-z>", "<cmd>set wrap!<CR>", options) -- toggle wrap
+keymap("n", "<C-n>", ":tabnew ", options) -- open new tab
+keymap("i", "<C-BS>", "<C-W>", {}) -- Ctrl-Backspace to delete the previous word
+keymap("v", ">", ">gv", options) -- indent in inser mode
+keymap("v", "<", "<gv", options)
+keymap("n", "ss", ":split<Return><C-w>w", options)
+keymap("n", "sv", ":vsplit<Return><C-w>w", options)
 
 -- ========================= With leader key ========================
-map("n", "<leader>w", ":bdelete!<CR>", options) -- to close current buffer
-map("n", "<leader>s", ":ASToggle<CR>", {}) -- toggle autosave
-map("n", "<leader>h", ":set hlsearch!<CR>", {}) -- toggle highlight search
-map("n", "<leader>pp", ":PackerSync<CR>", options)
-map("", "<leader>ff", ":Prettier<CR>", options)
+keymap("n", "<leader>w", ":bdelete!<CR>", options) -- to close current buffer
+keymap("n", "<leader>s", ":ASToggle<CR>", {}) -- toggle autosave
+keymap("n", "<leader>h", ":set hlsearch!<CR>", {}) -- toggle highlight search
+keymap("n", "<leader>pp", ":PackerSync<CR>", options)
+keymap("", "<leader>ff", ":Format<CR>", options)
 
 -- ======================== Resize the buffer =======================
-map("n", "<C-right>", ":vertical resize -5<CR>", options)
-map("n", "<C-left>", ":vertical resize +5<CR>", options)
-map("n", "<C-up>", ":resize -5<CR>", options)
-map("n", "<C-down>", ":resize +5<CR>", options)
+keymap("n", "<C-right>", ":vertical resize -5<CR>", options)
+keymap("n", "<C-left>", ":vertical resize +5<CR>", options)
+keymap("n", "<C-up>", ":resize -5<CR>", options)
+keymap("n", "<C-down>", ":resize +5<CR>", options)
 
 -- ================== Moving within the insert mode =================
-map("i", "<C-h>", "<left>", options)
-map("i", "<C-j>", "<down>", options)
-map("i", "<C-k>", "<up>", options)
-map("i", "<C-l>", "<right>", options)
+keymap("i", "<C-h>", "<left>", options)
+keymap("i", "<C-j>", "<down>", options)
+keymap("i", "<C-k>", "<up>", options)
+keymap("i", "<C-l>", "<right>", options)
 
 -- ====================== Move between buffers ======================
-map("n", "<Tab>", ":bnext<CR>")
-map("n", "<s-TAB>", ":bprevious<CR>")
-map("", "<C-j>", "<C-W>j", options)
-map("", "<C-k>", "<C-W>k", options)
-map("", "<C-h>", "<C-W>h", options)
-map("", "<C-l>", "<C-W>l", options)
+keymap("n", "<Tab>", ":bnext<CR>")
+keymap("n", "<s-TAB>", ":bprevious<CR>")
+keymap("", "<C-j>", "<C-W>j", options)
+keymap("", "<C-k>", "<C-W>k", options)
+keymap("", "<C-h>", "<C-W>h", options)
+keymap("", "<C-l>", "<C-W>l", options)
 
 -- ====================== Move text up and down =====================
-map("v", "<M-j>", ":m '>+1<CR>gv=gv", options)
-map("v", "<M-k>", ":m '<-2<CR>gv=gv", options)
-map("n", "<M-k>", ":m .-2<CR>==", {})
-map("n", "<M-j>", ":m .+1<CR>==", {})
+keymap("v", "<M-j>", ":m '>+1<CR>gv=gv", options)
+keymap("v", "<M-k>", ":m '<-2<CR>gv=gv", options)
+keymap("n", "<M-k>", ":m .-2<CR>==", {})
+keymap("n", "<M-j>", ":m .+1<CR>==", {})
 
 -- ============================ Nvim Tree ===========================
-map("n", "<C-M-j>", ":NvimTreeToggle<CR>", options)
-map("n", "<leader>e", ":NvimTreeOpen<CR>", options)
+keymap("n", "<C-M-j>", ":NvimTreeToggle<CR>", options)
+keymap("n", "<leader>e", ":NvimTreeOpen<CR>", options)
 
 -- ========================== Open terminal =========================
-map("n", "<leader>'", '<Cmd>exe v:count1 . "ToggleTerm direction=horizontal"<CR>', options) -- to open and split a new terminal
-map("n", "<leader>t", '<Cmd>exe v:count1 . "ToggleTerm direction=float"<CR>', options) -- to open and split a new terminal
-map("t", "<esc>", [[<C-\><C-n>]], options)
+keymap("n", "<leader>'", '<Cmd>exe v:count1 . "ToggleTerm direction=horizontal"<CR>', options) -- to open and split a new terminal
+keymap("n", "<leader>t", '<Cmd>exe v:count1 . "ToggleTerm direction=float"<CR>', options) -- to open and split a new terminal
+keymap("t", "<esc>", [[<C-\><C-n>]], options)
 
 -- ============================ Telescope ===========================
 -- Find open buffers
-map(
+keymap(
 	"n",
 	"<C-p>",
 	'<cmd>lua require"telescope.builtin".buffers(require("telescope.themes").get_dropdown({previewer = false}))<CR>',
@@ -77,7 +76,7 @@ map(
 )
 
 -- Find files
-map(
+keymap(
 	"n",
 	"<C-M-p>",
 	'<cmd>lua require"telescope.builtin".find_files(require("telescope.themes").get_dropdown({}))<CR>',
@@ -85,7 +84,7 @@ map(
 )
 
 -- Search and set colorscheme
-map(
+keymap(
 	"n",
 	"<C-M-t>",
 	'<cmd>lua require"telescope.builtin".colorscheme(require("telescope.themes").get_dropdown({winblend = 10}))<CR>',
@@ -93,73 +92,63 @@ map(
 )
 
 -- Find old fiels
-map("n", "<leader>?", require("telescope.builtin").oldfiles, options)
+keymap("n", "<leader>?", require("telescope.builtin").oldfiles, options)
 
 -- Find helps
-map("n", "<C-M-o>", require("telescope.builtin").help_tags)
+keymap("n", "<C-M-o>", require("telescope.builtin").help_tags)
 
 -- Find keymaps
-map("n", "<C-M-k>", "<cmd>Telescope keymaps<CR>", options)
+keymap("n", "<C-M-k>", "<cmd>Telescope keymaps<CR>", options)
 
 -- ============================= Comment ============================
 local api = require("Comment.api")
 
 -- Toggle current line (linewise) using C-/
-map("i", "<C-/>", api.toggle.linewise.current)
+keymap("i", "<C-/>", api.toggle.linewise.current)
 
 -- Toggle current line (blockwise) using C-\
-map("i", "<C-\\>", api.toggle.blockwise.current)
+keymap("i", "<C-\\>", api.toggle.blockwise.current)
 
 -- ============================== REST ==============================
-map("n", "<leader>rr", "<Plug>RestNvim", {}) -- run the request under the cursor
+keymap("n", "<leader>rr", "<Plug>RestNvim", {}) -- run the request under the cursor
 
 -- ============================ LSP Saga ============================
-local opts = { noremap = true, silent = true }
-
 -- Hover Doc
-map("n", "K", "<Cmd>Lspsaga hover_doc<CR>", opts)
+keymap("n", "K", "<Cmd>Lspsaga hover_doc<CR>")
 
-map("n", "gp", "<Cmd>Lspsaga preview_definition<CR>", opts)
+-- Peak definition
+keymap("n", "gP", "<cmd>Lspsaga peek_definition<CR>")
 
-map("i", "<leader>hl", "<Cmd>Lspsaga signature_help<CR>", opts)
+-- preview definition
+keymap("n", "gp", "<Cmd>Lspsaga preview_definition<CR>")
+
+keymap("i", "<leader>hl", "<Cmd>Lspsaga signature_help<CR>")
 
 -- Rename
-map("n", "gr", "<cmd>Lspsaga rename<CR>")
+keymap("n", "gr", "<cmd>Lspsaga rename<CR>")
 
 -- Go to Definition
-map("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
+keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
 
 -- show_line_diagnsotic float window unfocus
-map("n", "<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>")
+keymap("n", "<leader>gl", "<cmd>Lspsaga show_line_diagnostics<CR>")
 
 -- Show cursor diagnostic
-map("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
+keymap("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
 
 -- Show buffer diagnostic
-map("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
-
--- Diagnsotic jump
-map("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-map("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
-
--- Diagnostic jump with filter like Only jump to error
-map("n", "[E", function()
-	require("lspsaga.diagnostic").goto_prev({ severity = vim.diagnostic.severity.ERROR })
-end)
-map("n", "]E", function()
-	require("lspsaga.diagnostic").goto_next({ severity = vim.diagnostic.severity.ERROR })
-end)
+keymap("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
 
 -- Code action
-map({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
+keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
 
 -- Toggle Outline
-map("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
+keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
 
 -- ============================= Trouble ===========================
-vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
-vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", { silent = true, noremap = true })
-vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", { silent = true, noremap = true })
-vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { silent = true, noremap = true })
-vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
-vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })
+keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", { silent = true, noremap = true })
+keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", { silent = true, noremap = true })
+keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", { silent = true, noremap = true })
+keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", { silent = true, noremap = true })
+keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
+keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", { silent = true, noremap = true })

@@ -26,7 +26,7 @@ lspsaga.setup({
 		enable_in_insert = true,
 		sign = true,
 		sign_priority = 40,
-		virtual_text = true,
+		virtual_text = false,
 	},
 	diagnostic = {
 		twice_into = false,
@@ -48,8 +48,8 @@ lspsaga.setup({
 	},
 	outline = {
 		win_position = "right",
-		win_with = "10",
-		win_width = 10,
+		win_with = "",
+		win_width = 20,
 		show_detail = true,
 		auto_preview = true,
 		auto_refresh = true,
@@ -62,7 +62,7 @@ lspsaga.setup({
 		},
 	},
 	symbol_in_winbar = {
-		enable = true,
+		enable = false,
 		separator = "  ",
 		hide_keyword = true,
 		show_file = true,

@@ -16,7 +16,9 @@ M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 M.setup = function()
 	local config = {
-		virtual_text = true, -- Enable virtual text
+		virtual_text = {
+			prefix = "",
+		}, -- Enable virtual text
 		signs = false, -- Do not show signs
 		update_in_insert = true,
 		underline = true,
@@ -45,9 +47,10 @@ end
 local function lsp_keymaps(bufnr)
 	local buf_opts = { buffer = bufnr, silent = true }
 	keymap("n", "gD", vim.lsp.buf.declaration, buf_opts)
-	keymap("n", "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", buf_opts)
-	keymap("n", "gP", "<cmd>Lspsaga peek_definition<CR>", buf_opts)
 	keymap("n", "gi", vim.lsp.buf.implementation, buf_opts)
+	keymap("n", "<space>wa", vim.lsp.buf.add_workspace_folder, buf_opts)
+	keymap("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, buf_opts)
+	keymap("n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", buf_opts)
 end
 
 local function lsp_highlight(client)

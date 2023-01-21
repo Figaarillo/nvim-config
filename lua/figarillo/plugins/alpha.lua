@@ -130,13 +130,7 @@ local default_header = {
 		[[██ ██  ██ █████   ██    ██ ██    ██ ██ ██ ████ ██]],
 		[[██  ██ ██ ██      ██    ██  ██  ██  ██ ██  ██  ██]],
 		[[██   ████ ███████  ██████    ████   ██ ██      ██]],
-
-		-- [[                               __                ]],
-		-- [[  ___     ___    ___   __  __ /\_\    ___ ___    ]],
-		-- [[ / _ `\  / __`\ / __`\/\ \/\ \\/\ \  / __` __`\  ]],
-		-- [[/\ \/\ \/\  __//\ \_\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
-		-- [[\ \_\ \_\ \____\ \____/\ \___/  \ \_\ \_\ \_\ \_\]],
-		-- [[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
+		[[                                     by figarillo]],
 	},
 	opts = {
 		position = "center",
@@ -176,7 +170,7 @@ local buttons = {
 		dashboard.button("e", "  New file", "<cmd>ene<CR>"),
 		dashboard.button("f", "  Find file", "<cmd>Telescope find_files<CR>"),
 		-- dashboard.button("SPC F", "  Live grep"),
-		dashboard.button("p", "  Projects", "<cmd>Telescope projects<CR>"),
+		-- dashboard.button("p", "  Projects", "<cmd>Telescope projects<CR>"),
 		dashboard.button("c", "  Configuration", "<cmd>e ~/.config/nvim/init.lua <CR>"),
 		dashboard.button("u", "  Update plugins", "<cmd>PackerSync<CR>"),
 		dashboard.button("q", "  Quit", "<cmd>qa<CR>"),

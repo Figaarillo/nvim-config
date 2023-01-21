@@ -1,5 +1,5 @@
-local status, monokai = pcall(require, "monokai")
-if not status then
+local status_ok, monokai = pcall(require, "monokai")
+if not status_ok then
 	return
 end
 

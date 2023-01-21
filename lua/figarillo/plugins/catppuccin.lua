@@ -17,14 +17,14 @@ catppuccin.setup({
 		shade = "dark",
 		percentage = 0.15,
 	},
-	no_italic = false, -- Force no italic
-	no_bold = false, -- Force no bold
+	no_italic = true, -- Force no italic
+	no_bold = true, -- Force no bold
 	styles = {
 		comments = { "italic" },
 		conditionals = { "italic" },
 		loops = {},
-		functions = {},
-		keywords = {},
+		functions = { "italic" },
+		keywords = { "bold" },
 		strings = {},
 		variables = {},
 		numbers = {},
@@ -45,6 +45,3 @@ catppuccin.setup({
 		-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
 	},
 })
-
--- setup must be called before loading
-vim.cmd.colorscheme("catppuccin")

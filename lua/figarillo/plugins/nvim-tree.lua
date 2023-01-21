@@ -63,7 +63,7 @@ nvim_tree.setup({
 		full_name = false,
 		highlight_opened_files = "none",
 		root_folder_modifier = ":~",
-		indent_width = 1,
+		indent_width = 0.5,
 		indent_markers = {
 			enable = false,
 			inline_arrows = true,
