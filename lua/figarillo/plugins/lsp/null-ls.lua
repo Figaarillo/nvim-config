@@ -10,12 +10,16 @@ local code_actions = null_ls.builtins.code_actions
 local diagnostics = null_ls.builtins.diagnostics
 
 local sources = {
-	formatting.prettierd,
+	formatting.prettierd.with({
+		disabled_filetypes = { "yaml", "yml" },
+	}),
 	formatting.black.with({ extra_args = { "--fast" } }),
 	formatting.stylua,
 	formatting.google_java_format,
 	code_actions.eslint,
-	diagnostics.eslint,
+	diagnostics.eslint.with({
+		method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+	}),
 }
 
 null_ls.setup({

@@ -29,7 +29,7 @@ keymap("n", "<leader>w", ":bdelete!<CR>", options) -- to close current buffer
 keymap("n", "<leader>s", ":ASToggle<CR>", {}) -- toggle autosave
 keymap("n", "<leader>h", ":set hlsearch!<CR>", {}) -- toggle highlight search
 keymap("n", "<leader>pp", ":PackerSync<CR>", options)
-keymap("", "<leader>ff", ":Format<CR>", options)
+keymap("n", "<leader>ff", ":Format<CR>", options)
 
 -- ======================== Resize the buffer =======================
 keymap("n", "<C-right>", ":vertical resize -5<CR>", options)

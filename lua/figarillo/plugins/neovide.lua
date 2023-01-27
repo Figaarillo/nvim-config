@@ -1,7 +1,7 @@
 ---@diagnostic disable: undefined-global
 vim.cmd([[
 	if exists("g:neovide")
-		set guifont=Operator\ Mono\ Lig\ Book:h4.6
+		set guifont=Operator\ Mono\ Lig\ Book:h4.1
 		" set guifont=Cascadia\ Code:h4
 		let g:neovide_scale_factor = 1.0
 		let g:neovide_cursor_vfx_mode = "pixiedust"
