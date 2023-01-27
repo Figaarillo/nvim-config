@@ -39,7 +39,8 @@ packer.init({
 return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 
-	-- =========================== Utilities ========================== Autosave
+	-- =========================== Utilities ==========================
+	-- Autosave
 	use("Pocco81/auto-save.nvim")
 
 	-- Autopairs
