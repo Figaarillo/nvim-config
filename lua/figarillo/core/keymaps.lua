@@ -46,7 +46,7 @@ keymap("i", "<C-k>", "<up>", options)
 keymap("i", "<C-l>", "<right>", options)
 
 -- ====================== Move between buffers ======================
-keymap("n", "<Tab>", ":bnext<CR>")
+keymap("n", "<Tab>", "<cmd>bnext<CR>")
 keymap("n", "<s-TAB>", ":bprevious<CR>")
 keymap("", "<C-j>", "<C-W>j", options)
 keymap("", "<C-k>", "<C-W>k", options)
@@ -58,4 +58,3 @@ keymap("v", "<M-j>", ":m '>+1<CR>gv=gv", options)
 keymap("v", "<M-k>", ":m '<-2<CR>gv=gv", options)
 keymap("n", "<M-k>", ":m .-2<CR>==", {})
 keymap("n", "<M-j>", ":m .+1<CR>==", {})
-
