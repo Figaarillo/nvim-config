@@ -11,8 +11,7 @@ local g = vim.g -- global variables
 g.mapleader = " "
 
 -- ======================= Without leader key =======================
-keymap("n", "<C-s>", ":w<CR>", options) -- to save in normal mode
-keymap("i", "<C-s>", "<Esc>:w<CR>a", options) -- to save in insert mode
+keymap({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" }) -- to save
 keymap("i", "<C-M-s>", "<Esc>:w ", options) -- named save
 keymap("n", "ZZZ", ":q!<CR>", options) -- fast close
 keymap("n", "ZZ", ":Alpha<CR>", options) -- fast close
@@ -23,6 +22,9 @@ keymap("v", ">", ">gv", options) -- indent in inser mode
 keymap("v", "<", "<gv", options)
 keymap("n", "ss", ":split<Return><C-w>w", options)
 keymap("n", "sv", ":vsplit<Return><C-w>w", options)
+-- better up/down
+keymap({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+keymap({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 -- ========================= With leader key ========================
 keymap("n", "<leader>w", ":bdelete!<CR>", options) -- to close current buffer
