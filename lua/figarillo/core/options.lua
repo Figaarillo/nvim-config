@@ -47,6 +47,16 @@ set.termguicolors = true -- turn on true color in terminal
 set.syntax = "enable" -- show the syntax
 set.background = "dark"
 
--- ===================== Desable the swap files =====================
-set.backup = false -- to not create a backup
-set.swapfile = false -- to not create temporary files
+-- ============================= Neovide ============================
+---@diagnostic disable: undefined-global
+vim.cmd([[
+	if exists("g:neovide")
+		set guifont=Operator\ Mono\ Lig\ Book:h4.1
+		" set guifont=Cascadia\ Code:h4
+		let g:neovide_scale_factor = 1.0
+		let g:neovide_cursor_vfx_mode = "pixiedust"
+		let g:neovide_remember_window_size = v:true
+    let g:neovide_transparency = 0.85
+    let g:neovide_background_color = '#0B0E14'
+	endif
+]])
