@@ -1,7 +1,12 @@
+if true then
+  return {}
+end
+
 return {
   "catppuccin/nvim",
   name = "catppuccin",
   priority = 1000,
+  lazy = true,
   opts = {
     flavour = "mocha", -- latte, frappe, macchiato, mocha
     background = { -- :h background
@@ -16,8 +21,8 @@ return {
       shade = "dark",
       percentage = 0.15,
     },
-    no_italic = true, -- Force no italic
-    no_bold = true, -- Force no bold
+    no_italic = false, -- Force no italic
+    no_bold = false, -- Force no bold
     styles = {
       comments = { "italic" },
       conditionals = { "italic" },
