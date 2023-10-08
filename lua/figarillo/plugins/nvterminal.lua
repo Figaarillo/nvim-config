@@ -62,6 +62,8 @@ return {
       "<leader>th",
       function()
         require("nvterm.terminal").new("horizontal")
+        vim.cmd([[set signcolumn=no]])
+        vim.cmd("startinsert!")
       end,
       desc = "Open new horizontal terminal",
     },
@@ -69,6 +71,7 @@ return {
       "<leader>tv",
       function()
         require("nvterm.terminal").new("vertical")
+        vim.cmd([[set signcolumn=no]])
       end,
       desc = "Open new vertical terminal",
     },
@@ -76,6 +79,7 @@ return {
       "<leader>ti",
       function()
         require("nvterm.terminal").new("float")
+        vim.cmd([[set signcolumn=no]])
       end,
       desc = "Open new float terminal",
     },
