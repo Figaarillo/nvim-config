@@ -30,8 +30,8 @@ set.showtabline = 0
 -- ======================= Side number config =======================
 set.number = true -- show line number
 set.relativenumber = true -- shows numbers relative to our position
-set.numberwidth = 3 -- change width of the column
-set.signcolumn = "yes"
+set.numberwidth = 1 -- change width of the column
+set.signcolumn = "number"
 
 -- ========================== Tabs & Indent =========================
 set.tabstop = 2 -- chnage the display widht of the tabs characters, not the behavior of pressing tab

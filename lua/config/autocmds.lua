@@ -1,10 +1,6 @@
 -- =================== Speed up loading Lua modules =================
 vim.loader.enable()
 
--- ==============+=============== Init ==============================
-vim.cmd([[
-	set guifont=Operator\ Mono\ SSm\ Lig:h3.5
-]])
 -- ============================= Neovide ============================
 -- @diagnostic disable: undefined-global
 vim.cmd([[

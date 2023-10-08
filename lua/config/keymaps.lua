@@ -22,13 +22,10 @@ keymap("v", ">", ">gv", options) -- indent in inser mode
 keymap("v", "<", "<gv", options)
 keymap("n", "ss", ":split<Return><C-w>w", options)
 keymap("n", "sv", ":vsplit<Return><C-w>w", options)
--- better up/down
+
+-- ====================== Move line up and down =====================
 keymap({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 keymap({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-
--- ========================= With leader key ========================
-keymap("n", "<leader>w", ":bdelete!<CR>", options) -- to close current buffer
-keymap("n", "<leader>h", ":set hlsearch!<CR>", {}) -- toggle highlight search
 
 -- ======================== Resize the buffer =======================
 keymap("n", "<C-right>", ":vertical resize -5<CR>", options)
@@ -44,7 +41,7 @@ keymap("i", "<C-l>", "<right>", options)
 
 -- ====================== Move between buffers ======================
 keymap("n", "<Tab>", "<cmd>bnext<CR>")
-keymap("n", "<s-TAB>", ":bprevious<CR>")
+keymap("n", "<s-TAB>", "<cmd>bprevious<CR>")
 keymap("", "<C-j>", "<C-W>j", options)
 keymap("", "<C-k>", "<C-W>k", options)
 keymap("", "<C-h>", "<C-W>h", options)
@@ -55,3 +52,7 @@ keymap("v", "<M-j>", ":m '>+1<CR>gv=gv", options)
 keymap("v", "<M-k>", ":m '<-2<CR>gv=gv", options)
 keymap("n", "<M-k>", ":m .-2<CR>==", {})
 keymap("n", "<M-j>", ":m .+1<CR>==", {})
+
+-- =========================== Sign column ==========================
+keymap("n", "<leader>ua", "<cmd>set signcolumn=no<CR>", { desc = "Hide sign column" })
+keymap("n", "<leader>uA", "<cmd>set signcolumn=number<CR>", { desc = "Show sign column" })
