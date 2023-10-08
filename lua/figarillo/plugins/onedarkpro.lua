@@ -6,7 +6,7 @@ return {
       transparency = false,
       bold = true,
       italic = true,
-      underline = false,
+      underline = true,
       undercurl = true,
     },
     styles = {
@@ -31,8 +31,9 @@ return {
       -- Comment = { link = "Substitute" },
     },
     colors = {
-      onedark = {
-        bg = "#0B0E14",
+      onedark = {},
+      onedark_dark = {
+        bg = "#1A1B26",
         fg = "#abb2bf",
         red = "#F44747",
         orange = "#cd925a",
@@ -48,7 +49,7 @@ return {
         comment = "#7f848e",
         none = "NONE",
       },
-      onedark_dark = {
+      onedark_vivid = {
         fg = "#abb2bf",
         red = "#F44747",
         orange = "#cd925a",
@@ -57,6 +58,7 @@ return {
         cyan = "#2bbac5",
         blue = "#429feb",
         purple = "#a94bb1",
+        -- purple = "#ab4eff",
         white = "#abb2bf",
         black = "#282C34",
         gray = "#434852",
