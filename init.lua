@@ -1,2 +1,2 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
-require("figarillo.core.lazy")
+require("config.lazy")
