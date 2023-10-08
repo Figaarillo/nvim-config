@@ -36,7 +36,6 @@ return {
     open_files_do_not_replace_types = { "terminal", "Trouble", "qf", "Outline" },
     filesystem = {
       bind_to_cwd = false,
-      follow_current_file = true,
       use_libuv_file_watcher = true,
     },
     window = {
