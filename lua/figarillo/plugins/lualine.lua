@@ -1,32 +1,18 @@
+---@diagnostic disable: undefined-field
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
+  priority = 2000,
   opts = function()
     local icons = require("lazyvim.config").icons
-    local colors = {
-      red = "#ca1243",
-      grey = "#a0a1a7",
-      black = "#383a42",
-      white = "#f3f3f3",
-      light_green = "#83a598",
-      orange = "#fe8019",
-      green = "#8ec07c",
-      bg = "#1A1C23",
-    }
-    local function modified()
-      if vim.bo.modified then
-        return "+"
-      elseif not vim.bo.modifiable or vim.bo.readonly then
-        return "-"
-      end
-      return ""
-    end
     local Util = require("lazyvim.util")
 
     return {
       options = {
-        theme = "horizon",
+        theme = "auto",
         globalstatus = true,
+        component_separators = "",
+        section_separators = { left = "", right = "" },
         disabled_filetypes = { statusline = { "dashboard", "packer", "NVimTree", "alpha" } },
         icons_enabled = true,
         always_divide_middle = true,
@@ -68,7 +54,10 @@ return {
               fzf = "FZF",
               alpha = "Alpha",
             },
-            buffers_color = {},
+            buffers_color = {
+              active = "lualine_a_normal", -- Color for active buffer.
+              inactive = "lualine_c_normal", -- Color for inactive buffer.
+            },
             symbols = {
               modified = " ●",
               alternate_file = "",
