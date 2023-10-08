@@ -1,6 +1,6 @@
 return {
   "rcarriga/nvim-notify",
-  enabled = false,
+  enabled = true,
   keys = {
     {
       "<leader>un",
@@ -11,7 +11,7 @@ return {
     },
   },
   opts = {
-    timeout = 1000,
+    timeout = 500,
     max_height = function()
       return math.floor(vim.o.lines * 0.10)
     end,
