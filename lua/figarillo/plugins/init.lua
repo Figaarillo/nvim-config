@@ -1,39 +1,22 @@
--- plugins
-require("figarillo.plugins.alpha")
-require("figarillo.plugins.autopairs")
-require("figarillo.plugins.autosave")
-require("figarillo.plugins.cmp")
-require("figarillo.plugins.colorizer")
-require("figarillo.plugins.comment")
-require("figarillo.plugins.devicons")
-require("figarillo.plugins.indentblankline")
-require("figarillo.plugins.lualine")
-require("figarillo.plugins.lsp")
-require("figarillo.plugins.neovide")
-require("figarillo.plugins.nvim-tree")
-require("figarillo.plugins.rest")
-require("figarillo.plugins.tabnine")
-require("figarillo.plugins.toggle-term")
-require("figarillo.plugins.treesitter")
-require("figarillo.plugins.staline")
-require("figarillo.plugins.gitsings")
-require("figarillo.plugins.todo-comments")
-require("figarillo.plugins.trouble")
-
--- Colorschemes
-require("figarillo.plugins.bluloco")
-require("figarillo.plugins.dracula")
-require("figarillo.plugins.everblush")
-require("figarillo.plugins.onedarkpro")
-require("figarillo.plugins.onedark")
-require("figarillo.plugins.catppuccin")
-
--- Load theme
-vim.cmd([[
-try
-  colorscheme onedark
-catch /^Vim\%((\a\+)\)\=:E185/
-  colorscheme everblush
-  set background=dark
-endtry
-]])
+return {
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "onedark_dark",
+    },
+  },
+  { import = "lazyvim.plugins.extras.lang.typescript" },
+  { import = "lazyvim.plugins.extras.lang.go" },
+  { import = "lazyvim.plugins.extras.lang.rust" },
+  { import = "lazyvim.plugins.extras.lang.json" },
+  { import = "lazyvim.plugins.extras.lang.clangd" },
+  { import = "lazyvim.plugins.extras.lang.python" },
+  { import = "lazyvim.plugins.extras.linting.eslint" },
+  { import = "lazyvim.plugins.extras.formatting.prettier" },
+  { import = "lazyvim.plugins.extras.util.mini-hipatterns" },
+  { import = "lazyvim.plugins.extras.ui.mini-animate" },
+  { import = "lazyvim.plugins.extras.test.core" },
+  { import = "lazyvim.plugins.extras.dap.core" },
+  { import = "lazyvim.plugins.extras.vscode" },
+  { import = "lazyvim.plugins.extras.coding.codeium" },
+}

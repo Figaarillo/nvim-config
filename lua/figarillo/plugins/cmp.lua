@@ -1,175 +1,176 @@
-local cmp_status_ok, cmp = pcall(require, "cmp")
-if not cmp_status_ok then
-	return
-end
+return {
+  "hrsh7th/nvim-cmp",
+  version = false, -- last release is way too old
+  event = "InsertEnter",
+  dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "saadparwaiz1/cmp_luasnip",
+    "hrsh7th/cmp-emoji",
+    "hrsh7th/nvim-cmp",
+  },
+  ---@param opts cmp.ConfigSchema
+  opts = function(_, opts)
+    local has_words_before = function()
+        unpack = unpack or table.unpack
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+      end
 
-local snip_status_ok, luasnip = pcall(require, "luasnip")
-if not snip_status_ok then
-	return
-end
+    vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
 
-require("luasnip/loaders/from_snipmate").lazy_load({ paths = "./snippets/snipmate" })
-require("luasnip/loaders/from_vscode").lazy_load()
-local compare = require("cmp.config.compare")
--- require("luasnip/loaders/from_vscode").lazy_load({ paths = "./snippets/vscode" })
+    local cmp = require("cmp")
+    local luasnip = require("luasnip")
 
-local kind_icons = {
-	Text = "",
-	Method = "",
-	Function = "",
-	Constructor = "",
-	Field = "",
-	Variable = "",
-	Class = "ﴯ",
-	Interface = "",
-	Module = "",
-	Property = "ﰠ",
-	Unit = "塞",
-	Value = "",
-	Enum = "",
-	Keyword = "",
-	Snippet = "",
-	Color = "",
-	File = "",
-	Reference = "",
-	Folder = "",
-	EnumMember = "",
-	Constant = "",
-	Struct = "פּ",
-	Event = "",
-	Operator = "",
-	TypeParameter = "",
+    opts.mapping = vim.tbl_extend("force", opts.mapping, {
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+            -- this way you will only jump inside the snippet region
+          elseif luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          elseif has_words_before() then
+            cmp.complete()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+      })
+
+    local kind_icons = {
+      Text = "",
+      Method = "",
+      Function = "",
+      Constructor = "",
+      Field = "",
+      Variable = "",
+      Class = "ﴯ",
+      Interface = "",
+      Module = "",
+      Property = "ﰠ",
+      Unit = "塞",
+      Value = "",
+      Enum = "",
+      Keyword = "",
+      Snippet = "",
+      Color = "",
+      File = "",
+      Reference = "",
+      Folder = "",
+      EnumMember = "",
+      Constant = "",
+      Struct = "פּ",
+      Event = "",
+      Operator = "",
+      TypeParameter = "",
+    }
+
+    -- return {
+    --   completion = {
+    --     completeopt = "menu,menuone,noinsert",
+    --   },
+    --   snippet = {
+    --     expand = function(args)
+    --       luasnip.lsp_expand(args.body)
+    --     end,
+    --   },
+    --   mapping = cmp.mapping.preset.insert({
+    --     ["<C-k>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+    --     ["<C-j>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+    --     ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+    --     ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    --     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+    --     ["<C-e>"] = cmp.mapping({
+    --       i = cmp.mapping.abort(),
+    --       c = cmp.mapping.close(),
+    --     }),
+    --     ["<CR>"] = cmp.mapping.confirm({ select = false }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    --     ["<S-CR>"] = cmp.mapping.confirm({
+    --       behavior = cmp.ConfirmBehavior.Replace,
+    --       select = true,
+    --     }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    --     ["<Tab>"] = cmp.mapping(function(fallback)
+    --       if cmp.visible() then
+    --         cmp.select_next_item()
+    --       elseif luasnip.expandable() then
+    --         luasnip.expand()
+    --       elseif luasnip.expand_or_jumpable() then
+    --         luasnip.expand_or_jump()
+    --       else
+    --         fallback()
+    --       end
+    --     end, {
+    --       "i",
+    --       "s",
+    --     }),
+    --     ["<S-Tab>"] = cmp.mapping(function(fallback)
+    --       if cmp.visible() then
+    --         cmp.select_prev_item()
+    --       elseif luasnip.jumpable(-1) then
+    --         luasnip.jump(-1)
+    --       else
+    --         fallback()
+    --       end
+    --     end, {
+    --       "i",
+    --       "s",
+    --     }),
+    --   }),
+    --   formatting = {
+    --     fields = { "kind", "abbr", "menu" }, --order they will be displayed => Icon | Abbreviation | Menu
+    --     format = function(entry, vim_item)
+    --       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+    --       vim_item.menu = ({
+    --         nvim_lsp = "[LSP]",
+    --         cmp_tabnine = "[TabNine]",
+    --         buffer = "[Buffer]",
+    --         luasnip = "[Snippet]",
+    --         path = "[Path]",
+    --         emoji = "[Emoji]",
+    --       })[entry.source.name]
+    --       return vim_item
+    --     end,
+    --   },
+    --   sources = {
+    --     { name = "luasnip", max_item_count = 10 },
+    --     { name = "nvim_lsp", max_item_count = 10, keyword_length = 1 },
+    --     { name = "cmp_tabnine", max_item_count = 10, keyword_length = 2 },
+    --     { name = "buffer", max_item_count = 10, keyword_length = 3 },
+    --     { name = "path" },
+    --     { name = "emoji" },
+    --   },
+    --   confirm_opts = {
+    --     behavior = cmp.ConfirmBehavior.Replace,
+    --     select = false,
+    --   },
+    --   window = {
+    --     completion = cmp.config.window.bordered({
+    --       border = "rounded",
+    --       col_offset = -3,
+    --       side_padding = 1,
+    --     }),
+    --     documentation = cmp.config.window.bordered({
+    --       border = "rounded",
+    --       col_offset = -3,
+    --       side_padding = 1,
+    --     }),
+    --   },
+    --   experimental = {
+    --     ghost_text = {
+    --       hl_group = "CmpGhostText",
+    --     },
+    --   },
+    -- }
+  end,
 }
-
-cmp.setup({
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body) -- For `luasnip` users.
-		end,
-	},
-
-	mapping = cmp.mapping.preset.insert({
-		["<C-k>"] = cmp.mapping.select_prev_item(),
-		["<C-j>"] = cmp.mapping.select_next_item(),
-		["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1)),
-		["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1)),
-		["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-		["<C-e>"] = cmp.mapping({
-			i = cmp.mapping.abort(),
-			c = cmp.mapping.close(),
-		}),
-		-- Accept currently selected item. If none selected, `select` first item.
-		-- Set `select` to `false` to only confirm explicitly selected items.
-		["<CR>"] = cmp.mapping.confirm({ select = false }),
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expandable() then
-				luasnip.expand()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end, {
-			"i",
-			"s",
-		}),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end, {
-			"i",
-			"s",
-		}),
-	}),
-	formatting = {
-		fields = { "kind", "abbr", "menu" }, --order they will be displayed => Icon | Abbreviation | Menu
-		format = function(entry, vim_item)
-			vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-			vim_item.menu = ({
-				buffer = "[Buffer]",
-				nvim_lsp = "[LSP]",
-				luasnip = "[Snippet]",
-				path = "[Path]",
-				cmp_tabnine = "[TabNine]",
-				emoji = "[Emoji]",
-			})[entry.source.name]
-			return vim_item
-		end,
-	},
-	sources = {
-		{ name = "luasnip", max_item_count = 7 },
-		{ name = "nvim_lsp", max_item_count = 7, keyword_length = 1 },
-		{ name = "cmp_tabnine", max_item_count = 7, keyword_length = 2 },
-		{ name = "buffer", max_item_count = 7, keyword_length = 3 },
-		{ name = "path" },
-		{ name = "emoji" },
-	},
-	confirm_opts = {
-		behavior = cmp.ConfirmBehavior.Replace,
-		select = false,
-	},
-	window = {
-		completion = cmp.config.window.bordered({
-			border = "rounded",
-			col_offset = -3,
-			side_padding = 1,
-		}),
-		documentation = cmp.config.window.bordered({
-			border = "rounded",
-			col_offset = -3,
-			side_padding = 1,
-		}),
-	},
-	sorting = {
-		priority_weight = 1,
-		comparators = {
-			-- compare.kind,
-			compare.sort_text,
-		},
-	},
-	experimental = {
-		native_menu = false,
-		ghost_text = true,
-	},
-	performance = {
-		trigger_debounce_time = 500,
-		throttle = 550,
-		fetching_timeout = 80,
-	},
-})
-
-cmp.setup.cmdline({ "/", "?" }, {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = {
-		{ name = "buffer" },
-	},
-})
-
-cmp.setup.cmdline(":", {
-	mapping = cmp.mapping.preset.cmdline(),
-	sources = {
-		{ name = "cmdline" },
-	},
-	window = {
-		completion = cmp.config.window.bordered({
-			border = "rounded",
-			-- winhighlight = "Normal:Normal,FloatBorder:CmpCompletionBorder,CursorLine:CmpCursorLine,Search:Search",
-			col_offset = -3,
-			side_padding = 1,
-		}),
-	},
-	formatting = {
-		-- fields = { 'abbr' },
-		format = function(_, vim_item)
-			vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-			return vim_item
-		end,
-	},
-})

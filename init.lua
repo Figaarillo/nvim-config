@@ -1,3 +1,1 @@
-require("impatient")
-require("figarillo.core")
-require("figarillo.plugins")
+require("config.lazy")
