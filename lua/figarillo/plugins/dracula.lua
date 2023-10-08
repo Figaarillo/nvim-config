@@ -3,7 +3,7 @@ return {
   priority = 1000, -- Ensure it loads first
   lazy = true,
   opts = {
-    show_end_of_buffer = false, -- default false
+    show_end_of_buffer = true, -- default false
     transparent_bg = false, -- default false
     lualine_bg_color = "#44475a", -- default nil
     italic_comment = true, -- default false
