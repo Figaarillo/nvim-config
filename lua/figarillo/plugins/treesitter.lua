@@ -23,6 +23,10 @@ return {
       "vim",
       "vimdoc",
       "yaml",
+      "stylua",
+      "shellcheck",
+      "shfmt",
+      "flake8",
     },
     incremental_selection = {
       enable = true,
