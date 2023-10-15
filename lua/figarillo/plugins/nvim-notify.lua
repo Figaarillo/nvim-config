@@ -11,6 +11,7 @@ return {
     },
   },
   opts = {
+    fps = 15,
     top_down = false,
     timeout = 1000,
     max_height = function()
