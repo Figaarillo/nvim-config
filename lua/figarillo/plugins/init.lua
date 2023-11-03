@@ -2,7 +2,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "onedark_dark",
+      colorscheme = "everblush",
     },
   },
   { import = "lazyvim.plugins.extras.lang.typescript" },
@@ -18,6 +18,5 @@ return {
   { import = "lazyvim.plugins.extras.test.core" },
   { import = "lazyvim.plugins.extras.dap.core" },
   { import = "lazyvim.plugins.extras.vscode" },
-  -- { import = "lazyvim.plugins.extras.ui.alpha" },
   { import = "lazyvim.plugins.extras.lsp.none-ls" },
 }
