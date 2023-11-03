@@ -85,7 +85,7 @@ return {
             cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
             color = Util.fg("Debug"),
           },
-          { require("lazy.status").updates, cond = require("lazy.status").has_updates, color = Util.fg("Special") },
+          -- { require("lazy.status").updates, cond = require("lazy.status").has_updates, color = Util.fg("Special") },
         },
         lualine_z = {
           function()
