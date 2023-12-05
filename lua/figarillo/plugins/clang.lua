@@ -1,4 +1,5 @@
 return {
+  -- ========================== Treesitter ===========================
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
@@ -7,6 +8,7 @@ return {
       end
     end,
   },
+  -- =========================== Utilities ============================
   {
     "p00f/clangd_extensions.nvim",
     lazy = true,
@@ -37,6 +39,7 @@ return {
       },
     },
   },
+  -- ============================= LSP ===============================
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -87,6 +90,7 @@ return {
       },
     },
   },
+  -- =========================== Debugging ===========================
   {
     "mfussenegger/nvim-dap",
     optional = true,

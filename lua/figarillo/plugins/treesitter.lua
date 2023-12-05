@@ -4,25 +4,25 @@ return {
     highlight = { enable = true },
     indent = { enable = true },
     ensure_installed = {
+      "astro",
       "bash",
-      "c",
+      "css",
+      "cmake",
       "diff",
+      "gitignore",
       "html",
       "javascript",
       "jsdoc",
-      "json",
-      "jsonc",
       "lua",
       "luadoc",
       "luap",
       "markdown",
       "markdown_inline",
-      "python",
       "query",
       "regex",
-      "toml",
-      "tsx",
-      "typescript",
+      "scss",
+      "sql",
+      "svelte",
       "vim",
       "vimdoc",
       "yaml",
@@ -47,4 +47,14 @@ return {
     },
   },
   autotag = { enable = true },
+  config = function(_, opts)
+    require("nvim-treesitter.configs").setup(opts)
+
+    -- MDX
+    vim.filetype.add({
+      extension = {
+        mdx = "mdx",
+      },
+    })
+  end,
 }

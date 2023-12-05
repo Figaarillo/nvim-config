@@ -1,4 +1,5 @@
 return {
+  -- ========================== Treesitter ===========================
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
@@ -10,6 +11,7 @@ return {
       })
     end,
   },
+  -- ============================== LSP ==============================
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -46,6 +48,7 @@ return {
       },
     },
   },
+  -- ============================ Formatting ===========================
   {
     "nvimtools/none-ls.nvim",
     optional = true,
@@ -69,6 +72,7 @@ return {
       },
     },
   },
+  -- =========================== Debugging ===========================
   {
     "mfussenegger/nvim-dap",
     optional = true,
@@ -89,23 +93,5 @@ return {
   {
     "leoluz/nvim-dap-go",
     config = true,
-  },
-  {
-    "nvim-neotest/neotest",
-    optional = true,
-    dependencies = {
-      "nvim-neotest/neotest-go",
-    },
-    opts = {
-      adapters = {
-        ["neotest-go"] = {
-          -- Here we can set options for neotest-go, e.g.
-          -- args = { "-tags=integration" }
-        },
-      },
-    },
-  },
-  {
-    "nvim-neotest/neotest-go",
   },
 }

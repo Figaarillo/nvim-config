@@ -1,4 +1,59 @@
 return {
+  -- ========================== Treesitter ===========================
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      if type(opts.ensure_installed) == "table" then
+        vim.list_extend(opts.ensure_installed, { "typescript", "tsx" })
+      end
+    end,
+  },
+  -- ============================== LSP ==============================
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      -- make sure mason installs the server
+      servers = {
+        ---@type lspconfig.options.tsserver
+        tsserver = {
+          keys = {
+            {
+              "<leader>co",
+              function()
+                vim.lsp.buf.code_action({
+                  apply = true,
+                  context = {
+                    only = { "source.organizeImports.ts" },
+                    diagnostics = {},
+                  },
+                })
+              end,
+              desc = "Organize Imports",
+            },
+          },
+          settings = {
+            typescript = {
+              format = {
+                indentSize = vim.o.shiftwidth,
+                convertTabsToSpaces = vim.o.expandtab,
+                tabSize = vim.o.tabstop,
+              },
+            },
+            javascript = {
+              format = {
+                indentSize = vim.o.shiftwidth,
+                convertTabsToSpaces = vim.o.expandtab,
+                tabSize = vim.o.tabstop,
+              },
+            },
+            completions = {
+              completeFunctionCalls = true,
+            },
+          },
+        },
+      },
+    },
+  },
   {
     "neovim/nvim-lspconfig",
     -- other settings removed for brevity
@@ -49,59 +104,7 @@ return {
       },
     },
   },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "typescript", "tsx" })
-      end
-    end,
-  },
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      -- make sure mason installs the server
-      servers = {
-        ---@type lspconfig.options.tsserver
-        tsserver = {
-          keys = {
-            {
-              "<leader>co",
-              function()
-                vim.lsp.buf.code_action({
-                  apply = true,
-                  context = {
-                    only = { "source.organizeImports.ts" },
-                    diagnostics = {},
-                  },
-                })
-              end,
-              desc = "Organize Imports",
-            },
-          },
-          settings = {
-            typescript = {
-              format = {
-                indentSize = vim.o.shiftwidth,
-                convertTabsToSpaces = vim.o.expandtab,
-                tabSize = vim.o.tabstop,
-              },
-            },
-            javascript = {
-              format = {
-                indentSize = vim.o.shiftwidth,
-                convertTabsToSpaces = vim.o.expandtab,
-                tabSize = vim.o.tabstop,
-              },
-            },
-            completions = {
-              completeFunctionCalls = true,
-            },
-          },
-        },
-      },
-    },
-  },
+  -- ============================ Formatting ===========================
   { "jose-elias-alvarez/typescript.nvim" },
   {
     "nvimtools/none-ls.nvim",
@@ -109,6 +112,7 @@ return {
       table.insert(opts.sources, require("typescript.extensions.null-ls.code-actions"))
     end,
   },
+  -- =========================== Debugging ===========================
   {
     "williamboman/mason.nvim",
     opts = function(_, opts)

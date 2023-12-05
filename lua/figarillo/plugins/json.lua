@@ -1,4 +1,5 @@
 return {
+  -- ========================== Treesitter ===========================
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
@@ -7,11 +8,13 @@ return {
       end
     end,
   },
+  -- =========================== Utilities ===========================
   {
     "b0o/SchemaStore.nvim",
     lazy = true,
     version = false, -- last release is way too old
   },
+  -- ============================== LSP ==============================
   {
     "neovim/nvim-lspconfig",
     opts = {
