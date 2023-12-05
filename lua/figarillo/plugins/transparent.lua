@@ -10,18 +10,11 @@ return {
   },
   keys = {
     {
-      "<leader>ut",
+      "<leader>uet",
       function()
         require("transparent").toggle()
       end,
       desc = "Toggle transparent",
-    },
-    {
-      "<leader>ue",
-      function()
-        require("transparent").enable()
-      end,
-      desc = "Dissable transparent",
     },
   },
   config = function()
