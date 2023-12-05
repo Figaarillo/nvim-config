@@ -25,7 +25,7 @@ keymap("v", "<", "<gv", opts)
 
 -- ========================= Split window ==========================
 keymap("n", "ss", "<cmd>split<Return><C-w>w", opts)
-keymap("n", "sv", ":cmd>vsplit<Return><C-w>w", opts)
+keymap("n", "sv", "<cmd>vsplit<Return><C-w>w", opts)
 
 -- ====================== Increment/Decrement ======================
 keymap("n", "+", "<C-a>", opts)
