@@ -4,7 +4,7 @@
 
 -- ============================== Alias =============================
 local keymap = vim.keymap.set
-local options = { noremap = true, silent = true }
+local opts = { noremap = true, silent = true }
 local g = vim.g -- global variables
 
 -- =========================== Leader key ===========================
@@ -12,46 +12,54 @@ g.mapleader = " "
 
 -- ======================= Without leader key =======================
 keymap({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" }) -- to save
-keymap("i", "<C-M-s>", "<Esc>:w ", options) -- named save
-keymap("n", "ZZZ", ":q!<CR>", options) -- fast close
-keymap("n", "ZZ", ":Alpha<CR>", options) -- fast close
-keymap("n", "<M-z>", "<cmd>set wrap!<CR>", options) -- toggle wrap
-keymap("n", "<C-n>", ":tabnew ", options) -- open new tab
-keymap("i", "<C-BS>", "<C-W>", {}) -- Ctrl-Backspace to delete the previous word
-keymap("v", ">", ">gv", options) -- indent in inser mode
-keymap("v", "<", "<gv", options)
-keymap("n", "ss", ":split<Return><C-w>w", options)
-keymap("n", "sv", ":vsplit<Return><C-w>w", options)
+keymap("n", "ZZZ", ":q!<CR>", opts) -- fast close
+keymap("n", "ZZ", "<cmd>Dashboard<CR>", opts) -- fast close
+keymap("n", "<M-z>", "<cmd>set wrap!<CR>", opts) -- toggle wrap
+keymap("i", "<C-BS>", "<C-W>", { desc = "Delete backward" }) -- Ctrl-Backspace to delete the previous word
+keymap("n", "C-a", "gg<S-v>G", { desc = "Select all" }) -- Ctrl-a to select all
+keymap("n", "C-c", "<cmd>bd<CR>", { desc = "Close buffer" }) -- Ctrl-c to close buffer
+
+-- ========================= Indent line ===========================
+keymap("v", ">", ">gv", opts)
+keymap("v", "<", "<gv", opts)
+
+-- ========================= Split window ==========================
+keymap("n", "ss", "<cmd>split<Return><C-w>w", opts)
+keymap("n", "sv", ":cmd>vsplit<Return><C-w>w", opts)
+
+-- ====================== Increment/Decrement ======================
+keymap("n", "+", "<C-a>", opts)
+keymap("n", "-", "<C-x>", opts)
 
 -- ====================== Move line up and down =====================
 keymap({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 keymap({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 -- ======================== Resize the buffer =======================
-keymap("n", "<C-right>", ":vertical resize -5<CR>", options)
-keymap("n", "<C-left>", ":vertical resize +5<CR>", options)
-keymap("n", "<C-up>", ":resize -5<CR>", options)
-keymap("n", "<C-down>", ":resize +5<CR>", options)
+keymap("n", "<C-right>", "<C-w><")
+keymap("n", "<C-left>", "<C-w>>")
+keymap("n", "<C-up>", "<cmd>resize -1<CR>", opts)
+keymap("n", "<C-down>", "<cdm>resize +1<CR>", opts)
 
 -- ================== Moving within the insert mode =================
-keymap("i", "<C-h>", "<left>", options)
-keymap("i", "<C-j>", "<down>", options)
-keymap("i", "<C-k>", "<up>", options)
-keymap("i", "<C-l>", "<right>", options)
+keymap("i", "<C-h>", "<left>", opts)
+keymap("i", "<C-j>", "<down>", opts)
+keymap("i", "<C-k>", "<up>", opts)
+keymap("i", "<C-l>", "<right>", opts)
 
 -- ====================== Move between buffers ======================
-keymap("n", "<Tab>", "<cmd>bnext<CR>")
-keymap("n", "<s-TAB>", "<cmd>bprevious<CR>")
-keymap("", "<C-j>", "<C-W>j", options)
-keymap("", "<C-k>", "<C-W>k", options)
-keymap("", "<C-h>", "<C-W>h", options)
-keymap("", "<C-l>", "<C-W>l", options)
+keymap("n", "<Tab>", "<cmd>bnext<CR>", { desc = "Next buffer" })
+keymap("n", "<s-TAB>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
+keymap("", "<C-j>", "<C-W>j", opts)
+keymap("", "<C-k>", "<C-W>k", opts)
+keymap("", "<C-h>", "<C-W>h", opts)
+keymap("", "<C-l>", "<C-W>l", opts)
 
 -- ====================== Move text up and down =====================
-keymap("v", "<M-j>", ":m '>+1<CR>gv=gv", options)
-keymap("v", "<M-k>", ":m '<-2<CR>gv=gv", options)
-keymap("n", "<M-k>", ":m .-2<CR>==", {})
-keymap("n", "<M-j>", ":m .+1<CR>==", {})
+keymap("v", "<M-j>", "<cmd>m '>+1<CR>gv=gv", opts)
+keymap("v", "<M-k>", "<cmd>m '<-2<CR>gv=gv", opts)
+keymap("n", "<M-k>", "<cmd>m .-2<CR>==", {})
+keymap("n", "<M-j>", "<cmd>m .+1<CR>==", {})
 
 -- =========================== Sign column ==========================
 keymap("n", "<leader>ua", "<cmd>set signcolumn=no<CR>", { desc = "Hide sign column" })
