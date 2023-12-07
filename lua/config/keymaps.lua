@@ -11,13 +11,13 @@ local g = vim.g -- global variables
 g.mapleader = " "
 
 -- ======================= Without leader key =======================
-keymap({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" }) -- to save
+keymap({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<CR><esc>", { desc = "Save file" }) -- to save
 keymap("n", "ZZZ", ":q!<CR>", opts) -- fast close
 keymap("n", "ZZ", "<cmd>Dashboard<CR>", opts) -- fast close
 keymap("n", "<M-z>", "<cmd>set wrap!<CR>", opts) -- toggle wrap
 keymap("i", "<C-BS>", "<C-W>", { desc = "Delete backward" }) -- Ctrl-Backspace to delete the previous word
-keymap("n", "C-a", "gg<S-v>G", { desc = "Select all" }) -- Ctrl-a to select all
-keymap("n", "C-c", "<cmd>bd<CR>", { desc = "Close buffer" }) -- Ctrl-c to close buffer
+keymap("n", "<C-a>", "gg<S-v>G", { desc = "Select all" }) -- Ctrl-a to select all
+keymap("n", "<C-c>", "<cmd>bd<CR>", { desc = "Close buffer" }) -- Ctrl-c to close buffer
 
 -- ========================= Indent line ===========================
 keymap("v", ">", ">gv", opts)

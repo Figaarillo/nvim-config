@@ -1,3 +1,20 @@
+local fileExplorer = function()
+  local function telescope_buffer_dir()
+    return vim.fn.expand("%:p:h")
+  end
+
+  require("telescope").extensions.file_browser.file_browser({
+    path = "%:p:h",
+    cwd = telescope_buffer_dir(),
+    respect_gitignore = false,
+    hidden = true,
+    grouped = true,
+    previewer = false,
+    initial_mode = "normal",
+    layout_config = { height = 40 },
+  })
+end
+
 return {
   "telescope.nvim",
   dependencies = {
@@ -8,22 +25,16 @@ return {
     {
       "<leader>fp",
       function()
-        local function telescope_buffer_dir()
-          return vim.fn.expand("%:p:h")
-        end
-
-        require("telescope").extensions.file_browser.file_browser({
-          path = "%:p:h",
-          cwd = telescope_buffer_dir(),
-          respect_gitignore = false,
-          hidden = true,
-          grouped = true,
-          previewer = false,
-          initial_mode = "normal",
-          layout_config = { height = 40 },
-        })
+        fileExplorer()
       end,
-      desc = "File Explorer",
+      desc = "Explorer files",
+    },
+    {
+      "<C-p>",
+      function()
+        require("telescope.builtin").buffers()
+      end,
+      desc = "Explore buffers",
     },
   },
   config = function(_, opts)
@@ -68,7 +79,12 @@ return {
             end,
           },
           ["n"] = {
-            ["N"] = fb_actions.create,
+            ["a"] = fb_actions.create,
+            ["r"] = fb_actions.rename,
+            ["m"] = fb_actions.move,
+            ["y"] = fb_actions.copy,
+            ["d"] = fb_actions.remove,
+            ["o"] = fb_actions.open,
             ["h"] = fb_actions.goto_parent_dir,
             ["/"] = function()
               vim.cmd("startinsert")
