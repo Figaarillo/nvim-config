@@ -64,3 +64,7 @@ keymap("n", "<M-j>", "<cmd>m .+1<CR>==", {})
 -- =========================== Sign column ==========================
 keymap("n", "<leader>ua", "<cmd>set signcolumn=no<CR>", { desc = "Hide sign column" })
 keymap("n", "<leader>uA", "<cmd>set signcolumn=number<CR>", { desc = "Show sign column" })
+
+-- ========================= Multiple cursors ========================
+keymap("n", "<leader>j", "*``cgn", { desc = "Find next occurrence" })
+keymap("n", "<leader>k", "*``cgN", { desc = "Find previous occurrence" })
