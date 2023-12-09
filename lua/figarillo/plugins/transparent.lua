@@ -1,5 +1,6 @@
 return {
   "xiyaowong/nvim-transparent",
+  evetn = "VeryLazy",
   opts = {
     extra_groups = {
       "nvterm",

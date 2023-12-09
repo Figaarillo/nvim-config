@@ -42,6 +42,7 @@ return {
   -- ============================= LSP ===============================
   {
     "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       servers = {
         -- Ensure mason installs the server
@@ -93,6 +94,7 @@ return {
   -- =========================== Debugging ===========================
   {
     "mfussenegger/nvim-dap",
+    event = { "BufReadPre", "BufNewFile" },
     optional = true,
     dependencies = {
       -- Ensure C/C++ debugger is installed

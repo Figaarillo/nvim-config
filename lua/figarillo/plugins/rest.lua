@@ -1,11 +1,7 @@
-if true then
-  return {}
-end
-
 return {
   "rest-nvim/rest.nvim",
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = { "nvim-lua/plenary.nvim" },
-  lazy = false,
   priority = 2000, -- Ensure it loads first
   opts = {
     result_split_horizontal = true, -- Open request results in a horizontal split

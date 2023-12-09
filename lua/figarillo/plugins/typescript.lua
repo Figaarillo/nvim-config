@@ -11,6 +11,7 @@ return {
   -- ============================== LSP ==============================
   {
     "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       -- make sure mason installs the server
       servers = {
@@ -57,6 +58,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     -- other settings removed for brevity
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       ---@type lspconfig.options
       servers = {
@@ -108,6 +110,7 @@ return {
   { "jose-elias-alvarez/typescript.nvim" },
   {
     "nvimtools/none-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     opts = function(_, opts)
       table.insert(opts.sources, require("typescript.extensions.null-ls.code-actions"))
     end,
@@ -122,6 +125,7 @@ return {
   },
   {
     "mfussenegger/nvim-dap",
+    event = { "BufReadPre", "BufNewFile" },
     optional = true,
     dependencies = {
       {

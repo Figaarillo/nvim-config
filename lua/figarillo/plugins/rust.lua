@@ -11,6 +11,7 @@ return {
   -- ============================== LSP ==============================
   {
     "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       servers = {
         -- Ensure mason installs the server

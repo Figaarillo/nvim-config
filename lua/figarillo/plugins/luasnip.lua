@@ -1,8 +1,6 @@
 return {
   "L3MON4D3/LuaSnip",
-  keys = function()
-    return {}
-  end,
+  event = { "BufReadPre", "BufNewFile" },
   opts = function()
     local luasnip = require("luasnip")
     luasnip.filetype_extend("typescriptreact", { "javascript" })

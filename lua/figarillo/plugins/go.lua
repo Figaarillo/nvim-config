@@ -14,6 +14,7 @@ return {
   -- ============================== LSP ==============================
   {
     "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       servers = {
         gopls = {
@@ -51,6 +52,7 @@ return {
   -- ============================ Formatting ===========================
   {
     "nvimtools/none-ls.nvim",
+    event = { "BufReadPre", "BufNewFile" },
     optional = true,
     opts = function(_, opts)
       if type(opts.sources) == "table" then
@@ -75,6 +77,7 @@ return {
   -- =========================== Debugging ===========================
   {
     "mfussenegger/nvim-dap",
+    event = { "BufReadPre", "BufNewFile" },
     optional = true,
     dependencies = {
       {

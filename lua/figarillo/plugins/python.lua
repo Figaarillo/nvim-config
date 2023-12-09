@@ -11,6 +11,7 @@ return {
   -- ============================== LSP ==============================
   {
     "neovim/nvim-lspconfig",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
       servers = {
         pyright = {},
@@ -31,6 +32,7 @@ return {
   -- =========================== Debugging ===========================
   {
     "mfussenegger/nvim-dap",
+    event = { "BufReadPre", "BufNewFile" },
     optional = true,
     dependencies = {
       "mfussenegger/nvim-dap-python",
@@ -59,6 +61,8 @@ return {
   },
   {
     "linux-cultist/venv-selector.nvim",
+    ft = "python",
+    event = "BufReadPre",
     cmd = "VenvSelect",
     opts = function(_, opts)
       if require("lazyvim.util").has("nvim-dap-python") then
