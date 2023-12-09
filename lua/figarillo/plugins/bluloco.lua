@@ -1,7 +1,3 @@
-if true then
-  return {}
-end
-
 return {
   "uloco/bluloco.nvim",
   lazy = true,
