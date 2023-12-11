@@ -81,14 +81,9 @@ return {
           ["n"] = {
             ["a"] = fb_actions.create,
             ["r"] = fb_actions.rename,
-            ["m"] = fb_actions.move,
-            ["y"] = fb_actions.copy,
+            ["x"] = fb_actions.move,
+            ["c"] = fb_actions.copy,
             ["d"] = fb_actions.remove,
-            ["o"] = fb_actions.open,
-            ["h"] = fb_actions.goto_parent_dir,
-            ["/"] = function()
-              vim.cmd("startinsert")
-            end,
             ["<C-u>"] = function(prompt_bufnr)
               for i = 1, 10 do
                 actions.move_selection_previous(prompt_bufnr)
