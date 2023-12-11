@@ -74,7 +74,7 @@ g.loaded_netrwSettings = 1
 set.list = true
 local space = "·"
 set.listchars:append({
-  tab = "│─",
+  tab = "│ ",
   trail = space,
   nbsp = space,
 })
