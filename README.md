@@ -1,9 +1,35 @@
-<h1 align='center'>Neovim</h1>
+<h1 align='center'>Neovim 🚀</h1>
 
-This is my personal configuration to Neovim
+## Description
 
-## Screenshots
+My Neovim configuration 🤪
 
-![Dashboard](./assets/Dashboard.png)
+## Screen shots
 
-![code-example](./assets/Example.png)
+<p align="center">
+  <h2 align="center">✨ Screen shots ✨</h2>
+</h2>
+
+<p align="center">
+  <h4 align="center">Dashboard</h4>
+
+  <img src="./assets/Dashboard.png">
+</p>
+
+<p align="center">
+  <h4 align="center">TypeScript code example</h4>
+
+  <img src="./assets/Example-TS.png">
+</p>
+
+<p align="center">
+  <h4 align="center">Rust code example</h4>
+
+  <img src="./assets/Example-Rust.png">
+</p>
+
+<p align="center">
+  <h4 align="center">Go code example</h4>
+
+  <img src="./assets/Example-Go.png">
+</p>
