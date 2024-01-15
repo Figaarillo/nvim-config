@@ -4,7 +4,8 @@ return {
   event = "VeryLazy",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   keys = {
-    { "<leader>o", "<cmd>Oil<CR>", desc = "Open Explorer" },
+    { "<leader>o", "<cmd>Oil<CR>", desc = "Open Oil Explorer" },
+    { "<leader>of", "<cmd>Oil --float .<CR>", desc = "Open Oil Explorer with float" },
   },
   opts = {
     -- Oil will take over directory buffers (e.g. `vim .` or `:e src/`)
@@ -57,7 +58,7 @@ return {
       ["<C-h>"] = "actions.select_split",
       ["<C-t>"] = "actions.select_tab",
       ["<C-p>"] = "actions.preview",
-      ["<C-c>"] = "actions.close",
+      ["q"] = "actions.close",
       ["<C-l>"] = "actions.refresh",
       ["-"] = "actions.parent",
       ["_"] = "actions.open_cwd",
