@@ -4,7 +4,7 @@ return {
   event = "VeryLazy",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   keys = {
-    { "<leader>o", "<cmd>Oil<CR>", desc = "Open Oil Explorer" },
+    { "<leader>oo", "<cmd>Oil<CR>", desc = "Open Oil Explorer" },
     { "<leader>of", "<cmd>Oil --float .<CR>", desc = "Open Oil Explorer with float" },
   },
   opts = {
