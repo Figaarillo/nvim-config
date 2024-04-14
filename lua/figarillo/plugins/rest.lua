@@ -1,46 +1,96 @@
 return {
-  "rest-nvim/rest.nvim",
-  event = { "BufReadPre", "BufNewFile" },
-  dependencies = { "nvim-lua/plenary.nvim" },
-  priority = 2000, -- Ensure it loads first
-  opts = {
-    result_split_horizontal = true, -- Open request results in a horizontal split
-    result_split_in_place = false, -- Keep the http file buffer above|left when split horizontal|vertical
-    skip_ssl_verification = false, -- Skip SSL verification, useful for unknown certificates
-    encode_url = true, -- Encode URL before making request
-    -- Highlight request on run
-    highlight = {
-      enabled = true,
-      timeout = 150,
-    },
-    result = {
-      show_url = true, -- toggle showing URL, HTTP info, headers at top the of result window
-      show_http_info = true,
-      show_headers = true,
-      -- executables or functions for formatting response body [optional]
-      -- set them to nil if you want to disable them
-      formatters = {
-        json = "jq",
-        html = function(body)
-        -- stylua: ignore
-        return vim.fn.system({
-          "tidy", "-i", "-q",
-          "--tidy-mark", "no",
-          "--show-body-only", "auto",
-          "--show-errors", "0",
-          "--show-warnings", "0",
-          "-",
-        }, body):gsub("\n$", "")
-        end,
-      },
-    },
-    -- Jump to request line on run
-    jump_to_request = false,
-    env_file = ".env",
-    custom_dynamic_variables = {},
-    yank_dry_run = true,
+  {
+    "vhyrro/luarocks.nvim",
+    priority = 1000,
+    config = true,
   },
-  keys = {
-    { "<leader>rr", "<Plug>RestNvim", desc = "Run REST client" },
+  {
+    "rest-nvim/rest.nvim",
+    ft = "http",
+    dependencies = { "luarocks.nvim" },
+    config = function()
+      require("rest-nvim").setup({
+        client = "curl",
+        env_file = ".env",
+        env_pattern = "\\.env$",
+        env_edit_command = "tabedit",
+        encode_url = true,
+        skip_ssl_verification = false,
+        custom_dynamic_variables = {},
+        logs = {
+          level = "info",
+          save = true,
+        },
+        result = {
+          split = {
+            horizontal = false,
+            in_place = false,
+            stay_in_current_window_after_split = true,
+          },
+          behavior = {
+            decode_url = true,
+            show_info = {
+              url = true,
+              headers = true,
+              http_info = true,
+              curl_command = true,
+            },
+            statistics = {
+              enable = true,
+              ---@see https://curl.se/libcurl/c/curl_easy_getinfo.html
+              stats = {
+                { "total_time", title = "Time taken:" },
+                { "size_download_t", title = "Download size:" },
+              },
+            },
+            formatters = {
+              json = "jq",
+              html = function(body)
+                if vim.fn.executable("tidy") == 0 then
+                  return body, { found = false, name = "tidy" }
+                end
+                local fmt_body = vim.fn
+                  .system({
+                    "tidy",
+                    "-i",
+                    "-q",
+                    "--tidy-mark",
+                    "no",
+                    "--show-body-only",
+                    "auto",
+                    "--show-errors",
+                    "0",
+                    "--show-warnings",
+                    "0",
+                    "-",
+                  }, body)
+                  :gsub("\n$", "")
+
+                return fmt_body, { found = true, name = "tidy" }
+              end,
+            },
+          },
+        },
+        highlight = {
+          enable = true,
+          timeout = 750,
+        },
+        ---Example:
+        ---
+        ---```lua
+        ---keybinds = {
+        ---  {
+        ---    "<localleader>rr", "<cmd>Rest run<cr>", "Run request under the cursor",
+        ---  },
+        ---  {
+        ---    "<localleader>rl", "<cmd>Rest run last<cr>", "Re-run latest request",
+        ---  },
+        ---}
+        ---
+        ---```
+        ---@see vim.keymap.set
+        keybinds = {},
+      })
+    end,
   },
 }
