@@ -55,12 +55,6 @@ keymap("", "<C-k>", "<C-W>k", opts)
 keymap("", "<C-h>", "<C-W>h", opts)
 keymap("", "<C-l>", "<C-W>l", opts)
 
--- ====================== Move text up and down =====================
--- keymap("v", "<M-j>", "<cmd>m '>+1<CR>gv=gv", opts)
--- keymap("v", "<M-k>", "<cmd>m '<-2<CR>gv=gv", opts)
--- keymap("n", "<M-k>", "<cmd>m .-2<CR>==", {})
--- keymap("n", "<M-j>", "<cmd>m .+1<CR>==", {})
-
 -- ======================= Toggle sign column =======================
 keymap("n", "<leader>ua", "<cmd>set signcolumn=no<CR>", { desc = "Hide sign column" })
 keymap("n", "<leader>uA", "<cmd>set signcolumn=number<CR>", { desc = "Show sign column" })
