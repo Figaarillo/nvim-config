@@ -19,15 +19,15 @@ keymap("i", "<C-BS>", "<C-W>", { desc = "Delete backward" }) -- Ctrl-Backspace t
 keymap("n", "<C-a>", "gg<S-v>G", { desc = "Select all" }) -- Ctrl-a to select all
 keymap("n", "<C-c>", "<cmd>bd<CR>", { desc = "Close buffer" }) -- Ctrl-c to close buffer
 
--- ========================= Indent line ===========================
+-- =========================== Indent line ==========================
 keymap("v", ">", ">gv", opts)
 keymap("v", "<", "<gv", opts)
 
--- ========================= Split window ==========================
+-- ========================== Split window ==========================
 keymap("n", "ss", "<cmd>split<Return><C-w>w", opts)
 keymap("n", "sv", "<cmd>vsplit<Return><C-w>w", opts)
 
--- ====================== Increment/Decrement ======================
+-- ======================= Increment/Decrement=======================
 keymap("n", "+", "<C-a>", opts)
 keymap("n", "-", "<C-x>", opts)
 
@@ -56,15 +56,15 @@ keymap("", "<C-h>", "<C-W>h", opts)
 keymap("", "<C-l>", "<C-W>l", opts)
 
 -- ====================== Move text up and down =====================
-keymap("v", "<M-j>", "<cmd>m '>+1<CR>gv=gv", opts)
-keymap("v", "<M-k>", "<cmd>m '<-2<CR>gv=gv", opts)
-keymap("n", "<M-k>", "<cmd>m .-2<CR>==", {})
-keymap("n", "<M-j>", "<cmd>m .+1<CR>==", {})
+-- keymap("v", "<M-j>", "<cmd>m '>+1<CR>gv=gv", opts)
+-- keymap("v", "<M-k>", "<cmd>m '<-2<CR>gv=gv", opts)
+-- keymap("n", "<M-k>", "<cmd>m .-2<CR>==", {})
+-- keymap("n", "<M-j>", "<cmd>m .+1<CR>==", {})
 
--- =========================== Sign column ==========================
+-- ======================= Toggle sign column =======================
 keymap("n", "<leader>ua", "<cmd>set signcolumn=no<CR>", { desc = "Hide sign column" })
 keymap("n", "<leader>uA", "<cmd>set signcolumn=number<CR>", { desc = "Show sign column" })
 
--- ========================= Multiple cursors ========================
+-- ======================== Multiple cursors ========================
 keymap("n", "<leader>j", "*``cgn", { desc = "Find next occurrence" })
 keymap("n", "<leader>k", "*``cgN", { desc = "Find previous occurrence" })
