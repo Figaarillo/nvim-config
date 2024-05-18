@@ -3,10 +3,10 @@ vim.loader.enable()
 
 -- ============================= Neovide ============================
 if vim.g.neovide then
-  vim.o.guifont = "OperatorMonoSSmLig Nerd Font:h5.1:b"
+  vim.o.guifont = "Operator Mono Lig:h6"
   -- vim.o.guifont = "CaskaydiaCove Nerd Font Mono:h5.1"
   -- vim.o.guifont = "VictorMono Nerd Font:h5.1:b"
-  vim.opt.linespace = 1
+  vim.opt.linespace = 2
   vim.g.neovide_scale_factor = 2
   vim.g.neovide_transparency = 1
   vim.g.neovide_background_color = "#0B0E14"
