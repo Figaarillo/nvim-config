@@ -1,16 +1,21 @@
 return {
   "hrsh7th/nvim-cmp",
   version = false, -- last release is way too old
-  event = "InsertEnter",
+  event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
     "saadparwaiz1/cmp_luasnip",
+    "rafamadriz/friendly-snippets",
     "hrsh7th/cmp-emoji",
     "hrsh7th/nvim-cmp",
+    "hrsh7th/cmp-cmdline",
   },
   opts = function()
+    local cmp = require("cmp")
+    local luasnip = require("luasnip")
+
     local has_words_before = function()
       unpack = unpack or table.unpack
       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -19,41 +24,38 @@ return {
 
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
 
-    local cmp = require("cmp")
-    local luasnip = require("luasnip")
-
     local kind_icons = {
       Text = "󰉿",
-      Method = "󰆧",
-      Function = "󰊕",
-      Constructor = "",
+      Method = " ",
+      Function = "󰊕 ",
+      Constructor = " ",
       Field = " ",
-      Variable = "󰀫",
-      Class = "󰠱",
-      Interface = "",
-      Module = "",
-      Property = "󰜢",
-      Unit = "󰑭",
-      Value = "󰎠",
-      Enum = "",
-      Keyword = "󰌋",
-      Snippet = "",
-      Color = "󰏘",
-      File = "󰈙",
-      Reference = "",
-      Folder = "󰉋",
-      EnumMember = "",
-      Constant = "󰏿",
-      Struct = "",
-      Event = "",
-      Operator = "󰆕",
-      TypeParameter = " ",
+      Variable = " ",
+      Class = "󰠱 ",
+      Interface = " ",
+      Module = " ",
+      Property = "󰜢 ",
+      Unit = "󰑭 ",
+      Value = " ",
+      Enum = " ",
+      Keyword = "󰌋 ",
+      Snippet = " ",
+      Color = "󰏘 ",
+      File = "󰈙 ",
+      Reference = " ",
+      Folder = "󰉋 ",
+      EnumMember = " ",
+      Constant = "󰏿 ",
+      Struct = " ",
+      Event = " ",
+      Operator = " ",
+      TypeParameter = "  ",
       Misc = " ",
     }
 
     return {
       completion = {
-        completeopt = "menu,menuone,noinsert",
+        completeopt = "menu,menuone,noinsert,noselect",
       },
       snippet = {
         expand = function(args)
@@ -62,19 +64,17 @@ return {
       },
       window = {
         completion = cmp.config.window.bordered({
-          border = "shadow", -- | "single" | "rounded" | "double" | "shadow" |
-          col_offset = -3,
-          side_padding = 1,
+          border = "rounded",
+          winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
         }),
         documentation = cmp.config.window.bordered({
-          border = "shadow", -- | "single" | "rounded" | "double" | "shadow" |
-          col_offset = -3,
-          side_padding = 1,
+          border = "rounded",
+          winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None",
         }),
       },
       mapping = cmp.mapping.preset.insert({
-        ["<C-k>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<C-j>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
@@ -89,7 +89,7 @@ return {
         }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
-            cmp.select_next_item()
+            cmp.confirm({ select = true })
           elseif luasnip.expandable() then
             luasnip.expand()
           elseif luasnip.expand_or_jumpable() then
@@ -103,6 +103,10 @@ return {
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
+          elseif vim.snippet.active({ direction = -1 }) then
+            vim.schedule(function()
+              vim.snippet.jump(-1)
+            end)
           elseif luasnip.jumpable(-1) then
             luasnip.jump(-1)
           else
@@ -125,15 +129,18 @@ return {
         end,
       },
       sources = {
-        { name = "luasnip", max_item_count = 10 },
         { name = "nvim_lsp", max_item_count = 10, keyword_length = 1 },
+        { name = "luasnip", max_item_count = 10 },
         { name = "buffer", max_item_count = 5, keyword_length = 3 },
-        { name = "path" },
         { name = "emoji" },
+        { name = "path" },
       },
       confirm_opts = {
         behavior = cmp.ConfirmBehavior.Replace,
         select = false,
+      },
+      performance = {
+        max_view_entries = 20,
       },
       experimental = {
         ghost_text = {
