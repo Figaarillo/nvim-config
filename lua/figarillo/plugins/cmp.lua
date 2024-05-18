@@ -15,6 +15,7 @@ return {
   opts = function()
     local cmp = require("cmp")
     local luasnip = require("luasnip")
+    local compare = require("cmp.config.compare")
 
     local has_words_before = function()
       unpack = unpack or table.unpack
@@ -141,10 +142,20 @@ return {
       },
       performance = {
         max_view_entries = 20,
+        trigger_debounce_time = 500,
+        throttle = 550,
+        fetching_timeout = 80,
       },
       experimental = {
         ghost_text = {
           hl_group = "CmpGhostText",
+        },
+      },
+      sorting = {
+        priority_weight = 1,
+        comparators = {
+          -- compare.kind,
+          compare.sort_text,
         },
       },
     }
