@@ -1,6 +1,5 @@
 return {
   "metakirby5/codi.vim",
-  event = "VeryLazy",
   lazy = true,
   keys = {
     {

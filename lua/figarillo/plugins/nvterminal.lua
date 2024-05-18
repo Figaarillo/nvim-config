@@ -1,6 +1,6 @@
 return {
   "NvChad/nvterm",
-  event = "VeryLazy",
+  lazy = true,
   config = function()
     require("nvterm").setup({
       terminals = {
