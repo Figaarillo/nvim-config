@@ -1,7 +1,7 @@
 return {
   "mistricky/codesnap.nvim",
   build = "make",
-  lazy = true,
+  event = "VeryLazy",
   opts = {
     save_path = "~/Pictures/Screenshots/",
   },
