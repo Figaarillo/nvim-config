@@ -2,7 +2,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "everblush",
+      colorscheme = "cyberdream",
     },
   },
   { import = "lazyvim.plugins.extras.lang.typescript" },
