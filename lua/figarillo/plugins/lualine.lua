@@ -92,7 +92,6 @@ local diagnostics = {
 local buffers = {
   "buffers",
   separator = { left = "", right = "" },
-  color = { bg = colors.bg, fg = colors.purple, gui = "bold" },
   show_filename_only = true,
   hide_filename_extension = false,
   show_modified_status = false,
@@ -110,9 +109,9 @@ local buffers = {
     inactive = { bg = colors.black, fg = colors.fg_gutter }, -- color for inactive buffer
   },
   symbols = {
-    modified = " ●",
+    modified = "●",
     alternate_file = "",
-    directory = "",
+    directory = " ",
   },
 }
 
@@ -155,32 +154,28 @@ local clock = {
 }
 
 return {
-  {
-    "nvim-lualine/lualine.nvim",
-    event = "VeryLazy",
-    priority = 1000,
-    opts = function()
-      return {
-        options = {
-          theme = theme,
-          globalstatus = true,
-          component_separators = { left = "", right = "" },
-          section_separators = { left = "", right = "" },
-          disabled_filetypes = { statusline = { "dashboard", "packer", "NVimTree", "alpha" } },
-          icons_enabled = true,
-          ignore_focus = {},
-          always_divide_middle = true,
-        },
-        sections = {
-          lualine_a = { mode },
-          lualine_b = { space, diff, diagnostics },
-          lualine_c = { space, buffers },
-          lualine_x = { space },
-          lualine_y = { command, status_mode, dap },
-          lualine_z = { space, clock },
-        },
-        extensions = { "neo-tree", "lazy" },
-      }
-    end,
+  "nvim-lualine/lualine.nvim",
+  event = "VeryLazy",
+  priority = 1000,
+  opts = {
+    options = {
+      theme = theme,
+      globalstatus = true,
+      component_separators = { left = "", right = "" },
+      section_separators = { left = "", right = "" },
+      disabled_filetypes = { statusline = { "dashboard", "packer", "NVimTree", "alpha" } },
+      icons_enabled = true,
+      ignore_focus = {},
+      always_divide_middle = true,
+    },
+    sections = {
+      lualine_a = { mode },
+      lualine_b = { space, diff, diagnostics },
+      lualine_c = { space, buffers },
+      lualine_x = { space },
+      lualine_y = { command, status_mode, dap },
+      lualine_z = { clock },
+    },
+    extensions = { "lazy" },
   },
 }
