@@ -1,16 +1,21 @@
 return {
-  "Exafunction/codeium.vim",
-  event = "InsertEnter",
-    -- stylua: ignore
-    config = function ()
-      vim.g.codeium_disable_bindings = 1
-      vim.keymap.set("i", "<Tab>", function () return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
-      vim.keymap.set("i", "<A-.>", function () return vim.fn['codeium#Accept']() end, { expr = true, silent = true })
-      vim.keymap.set("i", "<A-f>", function() return vim.fn["codeium#CycleCompletions"](1) end, { expr = true })
-      vim.keymap.set("i", "<A-b>", function() return vim.fn["codeium#CycleCompletions"](-1) end, { expr = true })
-      vim.keymap.set("i", "<A-x>", function() return vim.fn["codeium#Clear"]() end, { expr = true })
-      vim.keymap.set("i", "<A-s>", function() return vim.fn["codeium#Complete"]() end, { expr = true })
-    end,
+  "monkoose/neocodeium",
+  event = "VeryLazy",
+  config = function()
+    local neocodeium = require("neocodeium")
+    local key = vim.keymap.set
+
+    neocodeium.setup()
+    key("i", "<Tab>", neocodeium.accept)
+    key("i", "<A-.>", neocodeium.accept)
+    key("i", "<A-w>", neocodeium.accept_word)
+    key("i", "<A-a>", neocodeium.accept_line)
+    key("i", "<A-[>", function()
+      require("neocodeium").cycle_or_complete(-1)
+    end)
+    key("i", "<A-]>", neocodeium.cycle_or_complete)
+    key("i", "<A-c>", neocodeium.clear)
+  end,
   keys = {
     {
       "<leader>ccd",
