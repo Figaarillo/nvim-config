@@ -1,6 +1,6 @@
 return {
   "gen740/SmoothCursor.nvim",
-  event = "VeryLazy",
+  event = { "LazyFile", "BufReadPost" },
   config = function()
     require("smoothcursor").setup({
       type = "exp",
