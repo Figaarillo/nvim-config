@@ -54,7 +54,7 @@ return {
   },
   {
     "scottmckendry/cyberdream.nvim",
-    lazy = false,
+    lazy = true,
     priority = 1000,
     opts = {
       italic_comments = true,
@@ -115,32 +115,6 @@ return {
         dark = "wave", -- try "dragon" !
         light = "lotus",
       },
-    },
-  },
-  {
-    "marko-cerovac/material.nvim",
-    lazy = true,
-    priority = 1000, -- Ensure it loads first
-    opts = {
-      styles = { -- Give comments style such as bold, italic, underline etc.
-        comments = { italic = true },
-        strings = {},
-        keywords = { bold = true, italic = true },
-        functions = { italic = true },
-        variables = {},
-        operators = {},
-        types = {},
-      },
-      lualine_style = "default",
-      async_loading = true,
-    },
-  },
-  {
-    "tanvirtin/monokai.nvim",
-    lazy = true,
-    priority = 1000, -- Ensure it loads first
-    opts = {
-      italic = true,
     },
   },
   {
@@ -251,27 +225,6 @@ return {
     },
   },
   {
-    "Tsuzat/NeoSolarized.nvim",
-    lazy = true,
-    priority = 1000,
-    opts = {
-      style = "dark", -- "dark" or "light"
-      transparent = false, -- true/false; Enable this to disable setting the background color
-      terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
-      enable_italics = true, -- Italics for different hightlight groups (eg. Statement, Condition, Comment, Include, etc.)
-      styles = {
-        -- Style to be applied to different syntax groups
-        comments = { italic = true },
-        keywords = { italic = true, bold = true },
-        functions = { bold = true },
-        variables = {},
-        string = { italic = true },
-        underline = true, -- true/false; for global underline
-        undercurl = true, -- true/false; for global undercurl
-      },
-    },
-  },
-  {
     "dgox16/oldworld.nvim",
     lazy = false,
     priority = 1000,
@@ -283,4 +236,23 @@ return {
       },
     },
   },
+  {
+    "projekt0n/github-nvim-theme",
+    lazy = true, -- make sure we load this during startup if it is your main colorscheme
+    priority = 1000, -- make sure to load this before all the other start plugins
+    config = function()
+      require("github-theme").compile()
+    end,
+  },
+  -- {
+  --   "folke/styler.nvim",
+  --   config = function()
+  --     require("styler").setup({
+  --       themes = {
+  --         markdown = { colorscheme = "ayu" },
+  --         help = { colorscheme = "catppuccin-mocha", background = "dark" },
+  --       },
+  --     })
+  --   end,
+  -- },
 }
