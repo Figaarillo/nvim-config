@@ -1,4 +1,4 @@
----@diagnostic disable: undefined-field
+---@diagnostic disable: undefined-field, inject-field
 
 local colors = require("tokyonight.colors").setup()
 local icons = require("lazyvim.config").icons
@@ -136,7 +136,7 @@ local command = {
     return package.loaded["noice"] and require("noice").api.status.command.has()
   end,
   separator = { left = "" },
-  color = { bg = colors.bg_highlight, fg = colors.cyan, gui = "italic,bold" },
+  color = { bg = colors.bg_highlight, fg = colors.orange, gui = "italic,bold" },
 }
 
 local status_mode = {
@@ -147,7 +147,7 @@ local status_mode = {
     return package.loaded["noice"] and require("noice").api.status.mode.has()
   end,
   separator = { left = "" },
-  color = { bg = colors.bg_highlight, fg = colors.cyan, gui = "italic,bold" },
+  color = { bg = colors.bg_highlight, fg = colors.red, gui = "italic,bold" },
 }
 
 local dap = {
