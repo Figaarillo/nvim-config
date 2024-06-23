@@ -6,6 +6,7 @@
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 local g = vim.g -- global variables
+local nvim_tmux_nav = require("nvim-tmux-navigation")
 
 -- =========================== Leader key ===========================
 g.mapleader = " "
@@ -16,7 +17,7 @@ keymap("n", "ZZZ", ":q!<CR>", opts) -- fast close
 keymap("n", "ZZ", "<cmd>Dashboard<CR>", opts) -- fast close
 keymap("n", "<M-z>", "<cmd>set wrap!<CR>", opts) -- toggle wrap
 keymap("i", "<C-BS>", "<C-W>", { desc = "Delete backward" }) -- Ctrl-Backspace to delete the previous word
-keymap("n", "<C-a>", "gg<S-v>G", { desc = "Select all" }) -- Ctrl-a to select all
+-- keymap("n", "<C-a>", "gg<S-v>G", { desc = "Select all" }) -- Ctrl-a to select all
 keymap("n", "<C-c>", "<cmd>bd<CR>", { desc = "Close buffer" }) -- Ctrl-c to close buffer
 
 -- =========================== Indent line ==========================
@@ -43,6 +44,7 @@ keymap("n", "<C-down>", "<cdm>resize +1<CR>", opts)
 
 -- ================== Moving within the insert mode =================
 keymap("i", "<C-h>", "<left>", opts)
+keymap("n", "-", "<C-x>", opts)
 keymap("i", "<C-j>", "<down>", opts)
 keymap("i", "<C-k>", "<up>", opts)
 keymap("i", "<C-l>", "<right>", opts)
@@ -50,10 +52,12 @@ keymap("i", "<C-l>", "<right>", opts)
 -- ====================== Move between buffers ======================
 keymap("n", "<Tab>", "<cmd>bnext<CR>", { desc = "Next buffer" })
 keymap("n", "<s-TAB>", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
-keymap("", "<C-j>", "<C-W>j", opts)
-keymap("", "<C-k>", "<C-W>k", opts)
-keymap("", "<C-h>", "<C-W>h", opts)
-keymap("", "<C-l>", "<C-W>l", opts)
+keymap("n", "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft)
+keymap("n", "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown)
+keymap("n", "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp)
+keymap("n", "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
+-- keymap("n", "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
+-- keymap("n", "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
 
 -- ======================= Toggle sign column =======================
 keymap("n", "<leader>ua", "<cmd>set signcolumn=no<CR>", { desc = "Hide sign column" })
