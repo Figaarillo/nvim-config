@@ -1,15 +1,17 @@
 ---@diagnostic disable: undefined-field
 
-local colors = require("oldworld.palette")
+local colors = require("tokyonight.colors").setup()
 local icons = require("lazyvim.config").icons
 local Util = require("lazyvim.util").ui
 
+colors.bg_dark = "#16161E"
+colors.bg = "#1A1B26"
+
 local modecolor = {
-  n = colors.red,
-  i = colors.cyan,
-  v = colors.purple,
-  [""] = colors.purple,
-  V = colors.red,
+  n = colors.blue,
+  i = colors.green,
+  v = colors.red,
+  [""] = colors.magenta,
   c = colors.yellow,
   no = colors.red,
   s = colors.yellow,
@@ -17,26 +19,39 @@ local modecolor = {
   [""] = colors.yellow,
   ic = colors.yellow,
   R = colors.green,
-  Rv = colors.purple,
+  Rv = colors.magenta,
   cv = colors.red,
   ce = colors.red,
   r = colors.cyan,
   rm = colors.cyan,
   ["r?"] = colors.cyan,
   ["!"] = colors.red,
-  t = colors.bright_red,
+  t = colors.red,
 }
 
 local theme = {
   normal = {
-    a = { fg = colors.bg_dark, bg = colors.blue },
-    b = { fg = colors.blue, bg = colors.white },
-    c = { fg = colors.white, bg = colors.bg_dark },
-    z = { fg = colors.white, bg = colors.bg_dark },
+    a = { bg = colors.blue, fg = colors.black },
+    b = { bg = colors.fg_gutter, fg = colors.blue },
+    c = { bg = colors.bg, fg = colors.fg_sidebar },
+    z = { bg = colors.blue, fg = colors.bg },
   },
-  insert = { a = { fg = colors.bg_dark, bg = colors.orange } },
-  visual = { a = { fg = colors.bg_dark, bg = colors.green } },
-  replace = { a = { fg = colors.bg_dark, bg = colors.green } },
+  insert = {
+    a = { bg = colors.green, fg = colors.black },
+    b = { bg = colors.fg_gutter, fg = colors.yellow },
+  },
+  visual = {
+    a = { bg = colors.magenta, fg = colors.black },
+    b = { bg = colors.fg_gutter, fg = colors.magenta },
+  },
+  replace = {
+    a = { bg = colors.red, fg = colors.black },
+    b = { bg = colors.fg_gutter, fg = colors.magenta },
+  },
+  terminal = {
+    a = { bg = colors.green1, fg = colors.black },
+    b = { bg = colors.fg_gutter, fg = colors.green1 },
+  },
 }
 
 local mode = {
@@ -44,7 +59,7 @@ local mode = {
   separator = { left = "", right = "" },
   color = function()
     local mode_color = modecolor
-    return { bg = mode_color[vim.fn.mode()], fg = colors.bg_dark, gui = "bold" }
+    return { bg = mode_color[vim.fn.mode()], fg = colors.black, gui = "bold" }
   end,
 }
 
@@ -52,13 +67,12 @@ local space = {
   function()
     return " "
   end,
-  color = { bg = colors.bg_dark, fg = colors.blue },
+  color = { bg = colors.bg, fg = colors.blue },
 }
 
 local diff = {
   "diff",
-  color = { bg = colors.gray2, fg = colors.bg, gui = "bold" },
-  separator = { left = "", right = "" },
+  color = { bg = colors.bg, fg = colors.blue, gui = "bold" },
   symbols = {
     added = icons.git.added,
     modified = icons.git.modified,
@@ -73,8 +87,7 @@ local diff = {
 
 local diagnostics = {
   "diagnostics",
-  color = { bg = colors.gray2, fg = colors.blue, gui = "bold" },
-  separator = { left = "" },
+  color = { bg = colors.bg, fg = colors.blue, gui = "bold" },
   symbols = {
     error = icons.diagnostics.Error,
     warn = icons.diagnostics.Warn,
@@ -84,7 +97,7 @@ local diagnostics = {
   diagnostics_color = {
     error = { fg = colors.red },
     warn = { fg = colors.yellow },
-    info = { fg = colors.purple },
+    info = { fg = colors.magenta },
     hint = { fg = colors.cyan },
   },
 }
@@ -106,7 +119,7 @@ local buffers = {
   },
   buffers_color = {
     active = { bg = colors.blue, fg = colors.bg }, -- color for active buffer
-    inactive = { bg = colors.black, fg = colors.fg_gutter }, -- color for inactive buffer
+    inactive = { bg = colors.bg_dark, fg = colors.fg_gutter }, -- color for inactive buffer
   },
   symbols = {
     modified = "●",
@@ -122,7 +135,8 @@ local command = {
   cond = function()
     return package.loaded["noice"] and require("noice").api.status.command.has()
   end,
-  color = { fg = colors.red, bg = colors.bg_dark, gui = "italic,bold" },
+  separator = { left = "" },
+  color = { bg = colors.bg_highlight, fg = colors.cyan, gui = "italic,bold" },
 }
 
 local status_mode = {
@@ -132,7 +146,8 @@ local status_mode = {
   cond = function()
     return package.loaded["noice"] and require("noice").api.status.mode.has()
   end,
-  color = { fg = colors.red, bg = colors.bg_dark, gui = "italic,bold" },
+  separator = { left = "" },
+  color = { bg = colors.bg_highlight, fg = colors.cyan, gui = "italic,bold" },
 }
 
 local dap = {
@@ -146,7 +161,7 @@ local dap = {
 }
 
 local clock = {
-  color = { bg = colors.yellow, fg = colors.bg, gui = "bold" },
+  color = { bg = colors.blue, fg = colors.black, gui = "bold" },
   separator = { left = "", right = "" },
   function()
     return " " .. os.date("%R")
