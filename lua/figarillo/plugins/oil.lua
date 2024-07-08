@@ -86,8 +86,8 @@ return {
       --   -- see :help oil-columns to see which columns are sortable
       --   { "type", "asc" },
       --   { "name", "asc" },
-      natural_order = true
-      },
+      -- },
+      natural_order = true,
     },
     -- Configuration for the floating window in oil.open_float
     float = {
