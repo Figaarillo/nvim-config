@@ -225,18 +225,6 @@ return {
     },
   },
   {
-    "dgox16/oldworld.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {
-      styles = {
-        booleans = { bold = true },
-        functions = { italic = true },
-        comments = { italic = true },
-      },
-    },
-  },
-  {
     "projekt0n/github-nvim-theme",
     lazy = true, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
@@ -244,15 +232,4 @@ return {
       require("github-theme").compile()
     end,
   },
-  -- {
-  --   "folke/styler.nvim",
-  --   config = function()
-  --     require("styler").setup({
-  --       themes = {
-  --         markdown = { colorscheme = "ayu" },
-  --         help = { colorscheme = "catppuccin-mocha", background = "dark" },
-  --       },
-  --     })
-  --   end,
-  -- },
 }
