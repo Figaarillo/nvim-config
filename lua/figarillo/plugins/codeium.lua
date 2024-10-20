@@ -15,17 +15,29 @@ return {
     end)
     key("i", "<A-]>", neocodeium.cycle_or_complete)
     key("i", "<A-c>", neocodeium.clear)
+
+    local wk = require("which-key")
+
+    wk.add({
+      { "<leader>ce", desc = "Codeium" },
+    })
   end,
   keys = {
     {
-      "<leader>ccd",
-      "<cmd>CodeiumDisable<CR>",
+      "<leader>ced",
+      --
+      "<cmd>NeoCodeium disable<CR>",
       desc = "Disable codeium",
     },
     {
-      "<leader>cce",
-      "<cmd>CodeiumEnable<CR>",
+      "<leader>cee",
+      "<cmd>NeoCodeium enable<CR>",
       desc = "Enable codeium",
+    },
+    {
+      "<leader>cer",
+      "<cmd>NeoCodeium restart<CR>",
+      desc = "Restart codeium",
     },
   },
 }
