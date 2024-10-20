@@ -9,7 +9,6 @@ return {
       "shfmt",
       "flake8",
       "tailwindcss-language-server",
-      "typescript-language-server",
       "deno",
       "pyright",
       "css-lsp",
