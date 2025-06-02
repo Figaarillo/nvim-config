@@ -2,7 +2,7 @@ return {
   "nvimdev/dashboard-nvim",
   event = "VimEnter",
   opts = function(_, opts)
-    local logo =[[                                                    
+    local logo = [[                                                    
                                                                     
       ████ ██████           █████      ██                     
      ███████████             █████                             

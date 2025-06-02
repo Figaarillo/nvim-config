@@ -157,7 +157,7 @@ local dap = {
   cond = function()
     return package.loaded["dap"] and require("dap").status() ~= ""
   end,
-  color = Util.fg("Debug"),
+  -- color = Util.fg("Debug"),
 }
 
 local clock = {
