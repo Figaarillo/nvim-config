@@ -17,6 +17,8 @@ end
 
 return {
   "telescope.nvim",
+  cmd = "Telescope", -- hace que Telescope se cargue cuando se invoca el comando
+  lazy = false, -- fuerza a cargar Telescope en el arranque (más seguro para dashboard)
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope-file-browser.nvim",
@@ -47,7 +49,7 @@ return {
     local actions = require("telescope.actions")
     local fb_actions = require("telescope").extensions.file_browser.actions
 
-    opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
+    opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
       wrap_result = true,
       layout_strategy = "horizontal",
       layout_config = { prompt_position = "top" },

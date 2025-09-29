@@ -46,11 +46,7 @@ return {
       },
     },
   },
-  autotag = { enable = true },
-  config = function(_, opts)
-    require("nvim-treesitter.configs").setup(opts)
-
-    -- MDX
+  init = function()
     vim.filetype.add({
       extension = {
         mdx = "mdx",
