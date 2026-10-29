@@ -1,7 +1,8 @@
 return {
   "mason-org/mason.nvim",
   opts = function(_, opts)
-    opts.ensure_installed = {
+    -- extend (not replace) so LazyVim extras keep their tools
+    vim.list_extend(opts.ensure_installed, {
       "stylua",
       "selene",
       "luacheck",
@@ -12,6 +13,6 @@ return {
       "deno",
       "pyright",
       "css-lsp",
-    }
+    })
   end,
 }
