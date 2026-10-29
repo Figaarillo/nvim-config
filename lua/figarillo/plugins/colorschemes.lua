@@ -17,7 +17,7 @@ return {
       },
       transparent_background = false,
       show_end_of_buffer = false, -- show the '~' characters after the end of buffers
-      term_colors = false,
+      term_colors = true, -- :terminal uses the same palette as kitty
       dim_inactive = {
         enabled = false,
         shade = "dark",
@@ -41,15 +41,8 @@ return {
       },
       color_overrides = {},
       custom_highlights = {},
-      integrations = {
-        cmp = true,
-        gitsigns = true,
-        nvimtree = true,
-        telescope = true,
-        notify = false,
-        mini = false,
-        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
-      },
+      -- auto_integrations (default) detects installed plugins; LazyVim adds the rest.
+      -- Don't set integrations to false here: it overrides LazyVim's (notify, mini...).
     },
   },
   {

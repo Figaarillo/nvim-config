@@ -1,16 +1,32 @@
 ---@diagnostic disable: undefined-field, inject-field
 
-local colors = require("tokyonight.colors").setup()
+local p = require("catppuccin.palettes").get_palette("mocha")
 local icons = require("lazyvim.config").icons
-local Util = require("lazyvim.util").ui
 
-colors.bg_dark = "#16161E"
-colors.bg = "#1A1B26"
+-- Map catppuccin mocha onto the names this file uses
+local colors = {
+  bg = p.mantle,
+  bg_dark = p.crust,
+  bg_highlight = p.surface0,
+  fg_gutter = p.surface0,
+  fg_sidebar = p.subtext0,
+  inactive_fg = p.overlay1,
+  black = p.crust,
+  blue = p.blue,
+  green = p.green,
+  red = p.red,
+  magenta = p.mauve,
+  yellow = p.yellow,
+  orange = p.peach,
+  cyan = p.sky,
+  teal = p.teal,
+}
 
 local modecolor = {
   n = colors.blue,
   i = colors.green,
-  v = colors.red,
+  v = colors.magenta,
+  V = colors.magenta,
   [""] = colors.magenta,
   c = colors.yellow,
   no = colors.red,
@@ -26,7 +42,7 @@ local modecolor = {
   rm = colors.cyan,
   ["r?"] = colors.cyan,
   ["!"] = colors.red,
-  t = colors.red,
+  t = colors.teal,
 }
 
 local theme = {
@@ -49,8 +65,8 @@ local theme = {
     b = { bg = colors.fg_gutter, fg = colors.magenta },
   },
   terminal = {
-    a = { bg = colors.green1, fg = colors.black },
-    b = { bg = colors.fg_gutter, fg = colors.green1 },
+    a = { bg = colors.teal, fg = colors.black },
+    b = { bg = colors.fg_gutter, fg = colors.teal },
   },
 }
 
@@ -119,7 +135,7 @@ local buffers = {
   },
   buffers_color = {
     active = { bg = colors.blue, fg = colors.bg }, -- color for active buffer
-    inactive = { bg = colors.bg_dark, fg = colors.fg_gutter }, -- color for inactive buffer
+    inactive = { bg = colors.bg_dark, fg = colors.inactive_fg }, -- color for inactive buffer
   },
   symbols = {
     modified = "●",
