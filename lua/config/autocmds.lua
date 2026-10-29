@@ -1,6 +1,3 @@
--- =================== Speed up loading Lua modules =================
-vim.loader.enable()
-
 -- ============================= Neovide ============================
 if vim.g.neovide then
   vim.o.guifont = "Operator Mono Lig:h6"
@@ -13,24 +10,18 @@ if vim.g.neovide then
   vim.g.neovide_refresh_rate = 60
   vim.g.neovide_cursor_vfx_mode = "pixiedust"
   vim.g.neovide_remember_window_size = true
-end
 
--- ========================== Change font size =========================
-local change_scale_factor = function(delta)
-  vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+  -- ======================== Change font size ======================
+  local change_scale_factor = function(delta)
+    vim.g.neovide_scale_factor = vim.g.neovide_scale_factor * delta
+  end
+  vim.keymap.set("n", "<C-=>", function()
+    change_scale_factor(1.25)
+  end, { desc = "Increase font size" })
+  vim.keymap.set("n", "<C-->", function()
+    change_scale_factor(1 / 1.25)
+  end, { desc = "Decrease font size" })
 end
-vim.keymap.set("n", "<C-=>", function()
-  change_scale_factor(1.25)
-end)
-vim.keymap.set("n", "<C-->", function()
-  change_scale_factor(1 / 1.25)
-end)
-
--- ============ Turn off paste mode when leaving insert mode ===========
-vim.api.nvim_create_autocmd("InsertLeave", {
-  pattern = "*",
-  command = "set nopaste",
-})
 
 -- ================== fix conceallevel for json files ==================
 vim.api.nvim_create_autocmd("FileType", {

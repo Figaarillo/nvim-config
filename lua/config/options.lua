@@ -4,7 +4,6 @@
 
 -- ============================== Alias =============================
 local set = vim.opt -- global/buffer/window-scoped options
-local g = vim.g
 
 -- ========================== Basic config ==========================
 set.clipboard = "unnamedplus" -- allows to use the OS clipboard
@@ -16,7 +15,7 @@ set.mouse = "a" -- allows use the mouse
 set.scrolloff = 10 -- keep at least 8 lines below cursor
 set.showcmd = true -- show the commands
 set.showmatch = true -- highlight matching parentheses
-set.smartcase = false -- ignore lower case for the wholef pattern
+set.smartcase = true -- case sensitive only if the pattern has uppercase letters
 set.spelllang = "en,es" -- correct the words using Spanish and English dictionary
 set.splitbelow = true -- set the splits to open at the below
 set.splitright = true -- set the splits to open at the right side
@@ -47,28 +46,6 @@ set.wrap = false
 set.termguicolors = true -- turn on true color in terminal
 set.syntax = "enable" -- show the syntax
 set.background = "dark"
-
--- ========================== Optimizations =========================
-g.loaded_gzip = 1
-g.loaded_zip = 1
-g.loaded_zipPlugin = 1
-g.loaded_tar = 1
-g.loaded_tarPlugin = 1
-
-g.loaded_getscript = 1
-g.loaded_getscriptPlugin = 1
-g.loaded_vimball = 1
-g.loaded_vimballPlugin = 1
-g.loaded_2html_plugin = 1
-
-g.loaded_matchit = 1
-g.loaded_matchparen = 1
-g.loaded_logiPat = 1
-g.loaded_rrhelper = 1
-
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
-g.loaded_netrwSettings = 1
 
 -- ============================ Listchars ===========================
 set.list = true
