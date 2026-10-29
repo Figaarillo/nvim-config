@@ -71,6 +71,17 @@ keymap("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
 keymap("n", "<leader>ua", "<cmd>set signcolumn=no<CR>", { desc = "Hide sign column" })
 keymap("n", "<leader>uA", "<cmd>set signcolumn=number<CR>", { desc = "Show sign column" })
 
+-- ========================== Toggle Copilot ========================
+Snacks.toggle({
+  name = "Copilot",
+  get = function()
+    return vim.lsp.inline_completion.is_enabled()
+  end,
+  set = function(state)
+    vim.lsp.inline_completion.enable(state)
+  end,
+}):map("<leader>uP")
+
 -- ======================== Multiple cursors ========================
 keymap("n", "<leader>k", "*``cgN", { desc = "Find previous occurrence" })
 keymap("n", "<leader>j", "*``cgn", { desc = "Find next occurrence" })
