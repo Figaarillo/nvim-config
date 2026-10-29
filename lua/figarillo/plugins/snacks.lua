@@ -6,6 +6,8 @@ return {
     lazygit = { enabled = true },
     image = { enabled = true },
     toggle = { enabled = true },
+    -- treat big files as "bigfile" (no treesitter/LSP/etc.) earlier than the 1.5MB default
+    bigfile = { size = 512 * 1024 },
     notifier = {
       top_down = false,
     },
