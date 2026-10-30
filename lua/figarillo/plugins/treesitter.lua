@@ -15,6 +15,7 @@ return {
       "html",
       "javascript",
       "jsdoc",
+      "latex", -- math rendering in notes (snacks.image); needs tree-sitter-cli from Mason
       "lua",
       "luadoc",
       "luap",
