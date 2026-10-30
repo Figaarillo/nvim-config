@@ -194,7 +194,7 @@ return {
       globalstatus = true,
       component_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
-      disabled_filetypes = { statusline = { "dashboard", "packer", "NVimTree", "alpha" } },
+      disabled_filetypes = { statusline = { "snacks_dashboard", "packer", "NVimTree", "alpha" } },
       icons_enabled = true,
       ignore_focus = {},
       always_divide_middle = true,
