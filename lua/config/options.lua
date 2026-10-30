@@ -27,6 +27,10 @@ set.lazyredraw = false -- do not redraw while executing macros (improve performa
 set.mousemoveevent = true
 set.showtabline = 0
 
+-- custom lualine.lua replaces every section, so LazyVim's trouble symbols
+-- component is never shown; skip it to avoid loading trouble at startup
+vim.g.trouble_lualine = false
+
 -- ======================= Side number config =======================
 set.number = true -- show line number
 set.relativenumber = true -- shows numbers relative to our position
