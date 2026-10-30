@@ -1,0 +1,2 @@
+# Base config for markdownlint-cli2 (passed via --config in lua/figarillo/plugins/markdown.lua)
+MD013: false # line length
